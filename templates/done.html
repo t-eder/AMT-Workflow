@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Erledigt</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+
+</head>
+<body>
+
+    <div class="header">
+        <div style="float: left; padding-left: 50px; padding-top: 35px;"><img src="{{ url_for('static', filename='logo-weiss.svg') }}" alt="Greipl Logo" height="75"></div>
+
+        <div class="navbar">
+           <a href="/">Offen</a>
+           <a href="/done" style="color: #0082da; border-bottom: 3px solid #0082da;">Erledigt</a>
+           <a href="/add_mask">Erstellen</a>
+       </div>
+    </div>
+
+
+    <div class="container">
+        <h1>ÄMT/NT Liste</h1>
+        <h2>> Erledigte Einträge</h2>
+
+         <table>
+             <tr>
+                        <th>Vorgang</th>
+                        <th>Ersteller</th>
+                        <th>ÄMT-Nr.</th>
+                        <th>Greipl-Nr.</th>
+                        <th>M1</th>
+                        <th>M2</th>
+                        <th>M3</th>
+                        <th>M4</th>
+                        <th>PT</th>
+                        <th>E1</th>
+                        <th>L1/L2</th>
+                        <th>KT</th>
+                        <th>Bemerkung - Statusupdate</th>
+                        <th>Hauptverantwortlich</th>
+             </tr>
+            <tr style="border: 0 solid white; background-color: #ffffff"><td></td></tr>
+
+            <tr class="task-list">
+            {% for task in tasks %}
+                {% if task.completed %}
+
+
+                <tr class="task {% if task.completed %}completed{% endif %}">
+
+                    <td>{{ task.vorgang }}</td>
+                    <td>{{ task.user }} </td>
+                    <td>ÄMT-2023-0815</td>
+                    <td>1030815</td>
+
+
+                    <td> {% if task.m1 == 1 %}
+                        <a href="/complete/m1/{{ task.id }}">M1</a>
+                    {% elif task.m1 == 2 %}
+                        <nobr style="color: green">M1</nobr>
+                    {% elif task.m1 == 0 %}
+                        <nobr style="color: lightgrey">M1</nobr>
+                    {% endif %}</td>
+
+                    <td>  {% if task.m2 == 1 %}
+                        <a href="/complete/m2/{{ task.id }}">M2</a>
+                    {% elif task.m2 == 2 %}
+                        <nobr style="color: green">M2</nobr>
+                    {% elif task.m2 == 0 %}
+                        <nobr style="color: lightgrey">M2</nobr>
+                    {% endif %}
+                    </td>
+
+                    <td> {% if task.m3 == 1 %}
+                        <a href="/complete/m3/{{ task.id }}">M3</a>
+                    {% elif task.m3 == 2 %}
+                        <nobr style="color: green">M3</nobr>
+                    {% elif task.m3 == 0 %}
+                        <nobr style="color: lightgrey">M3</nobr>
+                    {% endif %}</td>
+
+                    <td> {% if task.m4 == 1 %}
+                        <a href="/complete/m4/{{ task.id }}">M4</a>
+                    {% elif task.m4 == 2 %}
+                        <nobr style="color: green">M4</nobr>
+                    {% elif task.m4 == 0 %}
+                        <nobr style="color: lightgrey">M4</nobr>
+                    {% endif %}</td>
+
+                    <td> {% if task.pt == 1 %}
+                        <a href="/complete/pt/{{ task.id }}">PT</a>
+                    {% elif task.pt == 2 %}
+                        <nobr style="color: green">PT</nobr>
+                    {% elif task.pt == 0 %}
+                        <nobr style="color: lightgrey">PT</nobr>
+                    {% endif %}</td>
+
+                    <td> {% if task.e1 == 1 %}
+                        <a href="/complete/e1/{{ task.id }}">E1</a>
+                    {% elif task.e1 == 2 %}
+                        <nobr style="color: green">E1</nobr>
+                    {% elif task.e1 == 0 %}
+                        <nobr style="color: lightgrey">E1</nobr>
+                    {% endif %}</td>
+
+                    <td> {% if task.l1 == 1 %}
+                        <a href="/complete/l1/{{ task.id }}">L1</a>
+                    {% elif task.l1 == 2 %}
+                        <nobr style="color: green">L1</nobr>
+                    {% elif task.l1 == 0 %}
+                        <nobr style="color: lightgrey">L1</nobr>
+                    {% endif %}</td>
+
+                    <td> {% if task.kt == 1 %}
+                        <a href="/complete/kt/{{ task.id }}">KT</a>
+                    {% elif task.kt == 2 %}
+                        <nobr style="color: green">KT</nobr>
+                    {% elif task.kt == 0 %}
+                        <nobr style="color: lightgrey">KT</nobr>
+                    {% endif %}</td>
+
+                    <td>Bemerkung</td>
+                    <td>Mitarbeiter XYZ</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Eintrag bearbeiten</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+</head>
+
+
+<body>
+    <div class="header">
+        <div style="float: left; padding-left: 50px; padding-top: 35px;"><img src="{{ url_for('static', filename='logo-weiss.svg') }}" alt="Greipl Logo" height="75"></div>
+
+        <div class="navbar">
+           <a href="/" style="color: #0082da; border-bottom: 3px solid #0082da;">Offen</a>
+           <a href=/done>Erledigt</a>
+           <a href="/add_mask">Erstellen</a>
+       </div>
+    </div>
+
+
+    <div class="container">
+        <p style="background-color: orange; color: black; padding: 10px; margin: 0px; width: 75%">Eintrag bearbeiten</p>
+        <form action="/edit/{{ task.id }}" method="POST" class="add-task" style="width: 75%">
+
+            <div>
+                <h3>Daten:</h3>
+                <span>Vorgang:</span>
+                <input type="text" name="vorgang" placeholder="Vorgang" value="{{ task.vorgang }}" style="width: 75px" required>
+                <span>Ersteller:</span>
+                <span style="display: inline; width: 75px; border: 1px solid #ccc; font-size: 16px; padding: 5px; border-radius: 5px;">{{ task.user }}</span>
+
+            </div>
+            <div>
+                <h3>Zuständigkeiten:</h3>
+
+                <p>Projektleitung: </p>
+                <input type="text" name="leader" placeholder="Projektleiter" style="width: 150px" value="{{ task.leader }}">
+
+
+
+                <p>Mitarbeiter TAV:</p>
+
+                <label>Freigabe von</label>
+                <input type="text" name="owner" placeholder="Verantwortlich" style="width: 150px" value="{{ task.owner }}">
+                <p></p>
+                <table>
+                    <tr style="background-color: grey; border: 0px;">
+                        <th {% if task.m1 == 0%}style="background-color: grey;"{% endif%}>M1</th>
+                        <th {% if task.m2 == 0%}style="background-color: grey;"{% endif%}>M2</th>
+                        <th {% if task.m3 == 0%}style="background-color: grey;"{% endif%}>M3</th>
+                        <th {% if task.m4 == 0%}style="background-color: grey;"{% endif%}>M4</th>
+                        <th {% if task.pt == 0%}style="background-color: grey;"{% endif%}>PT</th>
+                        <th {% if task.e1 == 0%}style="background-color: grey;"{% endif%}>E1</th>
+                        <th {% if task.l1 == 0%}style="background-color: grey;"{% endif%}>L1</th>
+                        <th {% if task.kt == 0%}style="background-color: grey;"{% endif%}>KT</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="m1_worker" placeholder="Bearbeiter" style="width: 100px" value="{{ task.m1_worker }}" ></td>
+                        <td><input type="text" name="m2_worker" placeholder="Bearbeiter" style="width: 100px" value="{{ task.m2_worker }}" ></td>
+                        <td><input type="text" name="m3_worker" placeholder="Bearbeiter" style="width: 100px" value="{{ task.m3_worker }}" ></td>
+                        <td><input type="text" name="m4_worker" placeholder="Bearbeiter" style="width: 100px" value="{{ task.m4_worker }}" ></td>
+                        <td><input type="text" name="pt_worker" placeholder="Bearbeiter" style="width: 100px" value="{{ task.pt_worker }}" ></td>
+                        <td><input type="text" name="e1_worker" placeholder="Bearbeiter" style="width: 100px" value="{{ task.e1_worker }}" ></td>
+                        <td><input type="text" name="l1_worker" placeholder="Bearbeiter" style="width: 100px" value="{{ task.l1_worker }}" ></td>
+                        <td><input type="text" name="kt_worker" placeholder="Bearbeiter" style="width: 100px" value="{{ task.kt_worker }}" ></td>
+                    </tr>
+                    <tr>
+
+                        <td>
+                            <select name="m1" id="m1">
+                                 <option value="0" {% if task.m1 == 0 %}selected="selected"{% endif %}>Nicht benötigt</option>
+                                 <option value="1" {% if task.m1 == 1 %}selected="selected"{% endif %}>Offen</option>
+                                 <option value="2" {% if task.m1 == 2 %}selected="selected"{% endif %}>In Arbeit</option>
+                                 <option value="3" {% if task.m1 == 3 %}selected="selected"{% endif %}>Erledigt</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="m2" id="m2">
+                                 <option value="0" {% if task.m2 == 0 %}selected="selected"{% endif %}>Nicht benötigt</option>
+                                 <option value="1" {% if task.m2 == 1 %}selected="selected"{% endif %}>Offen</option>
+                                 <option value="2" {% if task.m2 == 2 %}selected="selected"{% endif %}>In Arbeit</option>
+                                 <option value="3" {% if task.m2 == 3 %}selected="selected"{% endif %}>Erledigt</option>
+                            </select>
+                        </td>
+                        <td>
+                           <select name="m3" id="m3">
+                                 <option value="0" {% if task.m3 == 0 %}selected="selected"{% endif %}>Nicht benötigt</option>
+                                 <option value="1" {% if task.m3 == 1 %}selected="selected"{% endif %}>Offen</option>
+                                 <option value="2" {% if task.m3 == 2 %}selected="selected"{% endif %}>In Arbeit</option>
+                                 <option value="3" {% if task.m3 == 3 %}selected="selected"{% endif %}>Erledigt</option>
+                            </select>
+                        </td>
+                        <td>
+                           <select name="m4" id="m4">
+                                 <option value="0" {% if task.m4 == 0 %}selected="selected"{% endif %}>Nicht benötigt</option>
+                                 <option value="1" {% if task.m4 == 1 %}selected="selected"{% endif %}>Offen</option>
+                                 <option value="2" {% if task.m4 == 2 %}selected="selected"{% endif %}>In Arbeit</option>
+                                 <option value="3" {% if task.m4 == 3 %}selected="selected"{% endif %}>Erledigt</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="pt" id="pt">
+                                 <option value="0" {% if task.pt == 0 %}selected="selected"{% endif %}>Nicht benötigt</option>
+                                 <option value="1" {% if task.pt == 1 %}selected="selected"{% endif %}>Offen</option>
+                                 <option value="2" {% if task.pt == 2 %}selected="selected"{% endif %}>In Arbeit</option>
+                                 <option value="3" {% if task.pt == 3 %}selected="selected"{% endif %}>Erledigt</option>
+                            </select>
+                        </td>
+                        <td>
+                           <select name="e1" id="e1">
+                                 <option value="0" {% if task.e1 == 0 %}selected="selected"{% endif %}>Nicht benötigt</option>
+                                 <option value="1" {% if task.e1 == 1 %}selected="selected"{% endif %}>Offen</option>
+                                 <option value="2" {% if task.e1 == 2 %}selected="selected"{% endif %}>In Arbeit</option>
+                                 <option value="3" {% if task.e1 == 3 %}selected="selected"{% endif %}>Erledigt</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="l1" id="l1">
+                                 <option value="0" {% if task.l1 == 0 %}selected="selected"{% endif %}>Nicht benötigt</option>
+                                 <option value="1" {% if task.l1 == 1 %}selected="selected"{% endif %}>Offen</option>
+                                 <option value="2" {% if task.l1 == 2 %}selected="selected"{% endif %}>In Arbeit</option>
+                                 <option value="3" {% if task.l1 == 3 %}selected="selected"{% endif %}>Erledigt</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="kt" id="kt" value="{{ task.kt }}">
+                                 <option value="0" {% if task.kt == 0 %}selected="selected"{% endif %}>Nicht benötigt</option>
+                                 <option value="1" {% if task.kt == 1 %}selected="selected"{% endif %}>Offen</option>
+                                 <option value="2" {% if task.kt == 2 %}selected="selected"{% endif %}>In Arbeit</option>
+                                 <option value="3" {% if task.kt == 3 %}selected="selected"{% endif %}>Erledigt</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+            <div>
+                <h3>Notiz:</h3>
+                <textarea name="note" placeholder="Bemerkung" cols="75" rows="10">{{ task.note }}</textarea>
+            </div>
+            <div style="border: 0px; margin:10px"><button type="submit">Speichern</button></div>
+            </form>
+    </div>
+</body>
+</html>

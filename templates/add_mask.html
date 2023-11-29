@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Eintrag erstellen</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+</head>
+
+
+<body>
+
+    <div class="header">
+        <div style="float: left; padding-left: 50px; padding-top: 35px;"><img src="{{ url_for('static', filename='logo-weiss.svg') }}" alt="Greipl Logo" height="75"></div>
+
+        <div class="navbar">
+           <a href="/">Offen</a>
+           <a href="/done">Erledigt</a>
+           <a href="/add_mask" style="color: #0082da; border-bottom: 3px solid #0082da;">Erstellen</a>
+       </div>
+    </div>
+
+    <div class="container">
+        <h1>ÄMT/NT Liste</h1>
+        <h2>> Eintrag erstellen</h2>
+
+        <p style="background-color: #0b2945; color: white; padding: 10px; margin: 0px; width: 50%">Eintrag erstellen</p>
+        <form action="/add" method="POST" class="add-task" style="width: 50%">
+            <div>
+                    <h3>Typ:</h3>
+                    <fieldset>
+                        <input type="radio" id="ÄMT" name="typ" value="ÄMT">
+                        <label for="ÄMT">Änderung</label>
+                        <input type="radio" id="NT" name="typ" value="NT">
+                        <label for="NT">Neuteil</label>
+                        <input type="radio" id="AA" name="typ" value="AA">
+                        <label for="AA"> Anweisung</label>
+                    </fieldset>
+                    <p></p>
+            </div>
+
+            <div>
+                <h3>Informationen zum Erzeugnis:</h3>
+                <input type="text" name="GGNR" placeholder="Greipl Nummer" required>
+                <input type="text" name="vorgang" placeholder="Vorgang" required>
+                <input type="text" name="AMTNR" placeholder="ÄMT Nummer">
+                <p></p>
+                    <fieldset>
+                        <input type="radio" id="1" name="kat" value="1">
+                        <label for="1">Kat 1</label>
+                        <input type="radio" id="2" name="kat" value="2">
+                        <label for="2">Kat 2</label>
+                        <input type="radio" id="3" name="kat" value="3">
+                        <label for="3">Kat 3</label>
+
+                        <input type="checkbox" id="EMPB" name="EMPB" />
+                        <label for="EMPB">Kunde fordert EMPB</label>
+                    </fieldset>
+
+
+            </div>
+
+            <div>
+                <h3>Zuständigkeiten:</h3>
+                <input type="text" name="user" placeholder="Ersteller" required>
+                <input type="text" name="leader" placeholder="Projektleiter" required>
+                <p></p>
+                <label for="desiredDate">Datum gewünschte Freigabe:</label>
+                <input type="date" id="desiredDate" name="desiredDate" min="2023-01-01" required/>
+            </div>
+
+            <div>
+                <h3>Betroffene Bereiche:</h3>
+                <input type="checkbox" id="m1" name="m1" />
+                <label for="m1">M1</label>
+                <input type="checkbox" id="m2" name="m2" />
+                <label for="m2">M2</label>
+                <input type="checkbox" id="m3" name="m3" />
+                <label for="m3">M3</label>
+                <input type="checkbox" id="m4" name="m4" />
+                <label for="m4">M4</label>
+                <input type="checkbox" id="pt" name="pt" />
+                <label for="pt">PT</label>
+                <input type="checkbox" id="e1" name="e1" />
+                <label for="e1">E1</label>
+                <input type="checkbox" id="l1" name="l1" />
+                <label for="l1">L1/L2</label>
+                <input type="checkbox" id="kt" name="kt" />
+                <label for="kt">KT</label>
+            </div>
+            <div>
+                <h3>Notiz:</h3>
+                <textarea name="note" placeholder="Bemerkung" cols="50%" rows="10"></textarea>
+            </div>
+
+            <div style="border: 0px; margin:10px"><button type="submit">Hinzufügen</button></div>
+
+            </form>
+    </div>
+</body>
+</html>

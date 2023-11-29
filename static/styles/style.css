@@ -1,0 +1,230 @@
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+           width: 100%;
+           height: 170px;
+           background-color: #0b2945;
+           margin: 0;
+           padding 0;
+        }
+
+         .navbar {
+          display: blocK;
+          background-color: #0b2945;
+          width: 1440px;
+          margin: 0 auto;
+          padding-top: 127px;;
+        }
+
+        .navbar a {
+          float: left;
+          display: block;
+          color: white;
+          background-color: #0b2945;
+          text-align: center;
+          text-decoration: none;
+          font-size: 17px;
+          padding: 10px;
+          min-width: 75px;
+        }
+
+        .navbar a:hover {
+          background: #0b2945;
+          color: #0082da;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .container h1 {
+        color: #0b2945;
+        font-size: 40px;
+        text-decoration:bold;
+        margin: 15px
+        }
+
+        .container h2 {
+        color: black;
+        font-size: 16px;
+        text-decoration: bold;
+        margin: 10px;
+        padding-left: 10px
+        }
+
+        .container h3 {
+        color: #0b2945;
+        font-size: 16px;
+        text-decoration:bold;
+        margin-top: 0px;
+        padding-top: 0px;
+        }
+
+        .container fieldset {
+        border: 0;
+        padding: 0;
+        margin: 0;
+
+        }
+
+        .container table, th, td{
+           border-collapse: collapse;
+           padding: 3px;
+           min-width: 40px;
+           text-align: center;
+        }
+
+        .container th{
+           color: white;
+           font-weight: normal;
+           border: 1px solid;
+           border-color: #0b2945;
+           background-color:#0b2945;
+           height: 30px
+           font-size: 12px;
+        }
+
+        .hover-box {
+        text-align: center;
+        }
+
+        .text2 {
+            display: none;
+            text-align: center;
+        }
+
+        .hover-box:hover .text2 {
+            display: block;
+        }
+        .hover-box:hover .text1 {
+            display: none;
+        }
+
+        .text3 {
+            display: none;
+            text-align: left;
+            background-color: white;
+            max-width: 400px;
+            border: 1px solid;
+        }
+
+        .hover-box:hover .text3 {
+            display: block;
+            position: absolute;
+        }
+
+        .task {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            padding: 5px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .task.completed {
+            background-color: #ffffff;
+            border-color: #c0c0c0;
+        }
+
+        .task a {
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 12px;
+            display: block;
+            color: black;
+            text-align: center;
+        }
+
+        .icon {
+        height: 15px;
+        width: 15px;
+        }
+
+        .task td {
+        border: 1px solid;
+        font-size: 12px;
+        }
+
+        .add-task {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .add-task input[type="text"] {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .add-task button {
+            background-color: #0b2945;
+            color: #ffffff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 0px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .add-task button:hover {
+            color: #0082da;
+        }
+
+        .add-task label {
+            font-size: 14px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .add-task div {
+        margin: 20px;
+        padding: 10px;
+        width: 90%;
+        border: 1px solid #ccc
+        }
+
+        .add-task p {
+        margin-bottom: 5px;
+        font-size: 14px;
+        }
+
+        .add-task input[type="checkbox"] {
+        transform : scale(1.4);
+        }
+
+        .open1 {
+            display: block;
+            background-color: #00c4e7;
+        }
+
+        .work2 {
+            display: block;
+            background-color: #ffe50e;
+        }
+
+        .done3 {
+            display: block;
+            background-color: #00da03;
+        }
+
+        .unuse0 {
+            display: block;
+            background-color: #ddd;
+            color: grey;
+        }

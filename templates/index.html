@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ÄMT/NT-Liste</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+
+</head>
+<body>
+    <div class="header">
+        <div style="float: left; padding-left: 50px; padding-top: 35px;"><img src="{{ url_for('static', filename='logo-weiss.svg') }}" alt="Greipl Logo" height="75"></div>
+
+        <div class="navbar">
+           <a href="/" style="color: #0082da; border-bottom: 3px solid #0082da;">Offen</a>
+           <a href=/done>Erledigt</a>
+           <a href="/add_mask">Erstellen</a>
+       </div>
+    </div>
+
+    <div class="container">
+        <h1 style="color: #0b2945; font-size: 40px; text-decoration: bold;">ÄMT/NT Liste</h1>
+        <h2>> Offene Einträge</h2>
+        <table>
+               <tr><td colspan="100%" style="font-size: 12px">
+                   <div style="float: right">
+                   <span style="color: grey">&#9724</span> Nicht benötigt
+                   <span style="color: #00c4e7">&#9724</span> Offen
+                   <span style="color: #ffe50e">&#9724</span> In Arbeit
+                   <span style="color: #00da03">&#9724</span> Erledigt
+                   </div>
+               </td></tr>
+               <tr style="font-size: 14px">
+                        <th>Edit</th>
+                        <th>Typ</th>
+                        <th>Kat</th>
+                        <th>Greipl-Nr.</th>
+                        <th>Vorgang</th>
+                        <th>ÄMT-Nr.</th>
+                        <th>M1</th>
+                        <th>M2</th>
+                        <th>M3</th>
+                        <th>M4</th>
+                        <th>PT</th>
+                        <th>E1</th>
+                        <th>L1/L2</th>
+                        <th>KT</th>
+                        <th>EMBP</th>
+                        <th>Ersteller</th>
+                        <th>Projektleitung</th>
+                        <th>TAV</th>
+                        <th>Termin</th>
+                        <th>TAV-Start</th>
+                        <th>Notiz</th>
+                        <th>Daten</th>
+                        <th>Freigabe</th>
+               </tr>
+
+            <tr style="border: 0 solid white; background-color: #ffffff"><td></td></tr>
+
+            <tr class="task-list">
+            {% for task in tasks %}
+                {% if not task.completed %}
+
+                <tr class="task {% if task.completed %}completed{% endif %}" style="border-bottom: 1px solid; border-right: 1px solid; border-left: 1px solid;" >
+
+                    <td><center><a href="/task_edit/{{ task.id }}" style="background-color: transparent; padding-top:3px;"><img class="icon" src="{{ url_for('static', filename='edit.png') }}" alt="Icon"></a></center></td>
+                    <td>{{ task.typ }}</td>
+                    <td>{{ task.kat }}</td>
+                    <td>{{ task.GGNR }}</td>
+                    <td>{{ task.vorgang }}</td>
+                    <td>{{ task.AMTNR }}</td>
+
+                        <td>
+                            <div class="hover-box">
+                                {% if task.m1 == 1 %}
+                                        <div class="text1">
+                                            <nobr class="open1">M1</nobr>
+                                        </div>
+                                        <div class="text2">
+                                            {{ task.m1_worker }}
+                                        </div>
+                                {% elif task.m1 == 2 %}
+                                        <div class="text1">
+                                            <nobr class="work2">M1</nobr>
+                                        </div>
+                                        <div class="text2">
+                                            {{ task.m1_worker }}
+                                        </div>
+                                {% elif task.m1 == 3 %}
+                                        <div class="text1">
+                                            <nobr class="done3">M1</nobr>
+                                        </div>
+                                        <div class="text2">
+                                            {{ task.m1_worker }}
+                                        </div>
+                                {% elif task.m1 == 0 %}
+                                        <div class="unuse0">
+                                        M1
+                                        </div>
+                                {% endif %}
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="hover-box">
+                                {% if task.m2 == 1 %}
+                                        <div class="text1">
+                                            <nobr class="open1">M2</nobr>
+                                        </div>
+                                        <div class="text2">
+                                            {{ task.m2_worker }}
+                                        </div>
+                                {% elif task.m2 == 2 %}
+                                        <div class="text1">
+                                            <nobr class="work2">M2</nobr>
+                                        </div>
+                                        <div class="text2">
+                                            {{ task.m2_worker }}
+                                        </div>
+                                {% elif task.m2 == 3 %}
+                                        <div class="text1">
+                                            <nobr class="done3">M2</nobr>
+                                        </div>
+                                        <div class="text2">
+                                            {{ task.m2_worker }}
+                                        </div>
+                                {% elif task.m2 == 0 %}
+                                        <div class="unuse0">
+                                        M2
+                                        </div>
+                                {% endif %}
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="hover-box">
+                                {% if task.m3 == 1 %}
+                                        <div class="text1">
+                                            <nobr class="open1">M3</nobr>
+                                        </div>
+                                        <div class="text2">
+                                            {{ task.m3_worker }}
+                                        </div>
+                                {% elif task.m3 == 2 %}
+                                        <div class="text1">
+                                            <nobr class="work2">M3</nobr>
+                                        </div>
+                                        <div class="text2">
+                                            {{ task.m3_worker }}
+                                        </div>
+                                {% elif task.m3 == 3 %}
+                                        <div class="text1">
+                                            <nobr class="done3">M3</nobr>
+                                        </div>
+                                        <div class="text2">
+                                            {{ task.m3_worker }}
+                                        </div>
+                                {% elif task.m3 == 0 %}
+                                        <div class="unuse0">
+                                        M3
+                                        </div>
+                                {% endif %}
+                            </div>
+                        </td>
+
+                        <td>
+                           <div class="hover-box">
+                                {% if task.m4 == 1 %}
+                                        <div class="text1">
+                                            <nobr class="open1">M4</nobr>
+                                        </div>
+                                        <div class="text2">
+                                            {{ task.m4_worker }}
+                                        </div>
+                                {% elif task.m4 == 2 %}
+                                        <div class="text1">
+                                            <nobr class="work2">M4</nobr>
+                                        </div>
+                                        <div class="text2">
+                                            {{ task.m4_worker }}
+                                        </div>
+                               {% elif task.m4 == 3 %}
+                                        <div class="text1">
+                                            <nobr class="done3">M4</nobr>
+                                        </div>
+                                        <div class="text2">
+                                            {{ task.m4_worker }}
+                                        </div>
+                                {% elif task.m4 == 0 %}
+                                        <div class="unuse0">
+                                        M4
+                                        </div>
+                                {% endif %}
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="hover-box">
+                                {% if task.pt == 1 %}
+                                        <div class="text1">
+                                            <nobr class="open1">PT</nobr>
+                                        </div>
+                                        <div class="text2">
+                                            {{ task.pt_worker }}
+                                        </div>
+                                {% elif task.pt == 2 %}
+                                        <div class="text1">
+                                            <nobr class="work2">PT</nobr>
+                                        </div>
+                                        <div class="text2">
+                                            {{ task.pt_worker }}
+                                        </div>
+                                {% elif task.pt == 3 %}
+                                        <div class="text1">
+                                            <nobr class="done3">PT</nobr>
+                                        </div>
+                                        <div class="text2">
+                                            {{ task.pt_worker }}
+                                        </div>
+                                {% elif task.pt == 0 %}
+                                        <div class="unuse0">
+                                        PT
+                                        </div>
+                                {% endif %}
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="hover-box">
+                                {% if task.e1 == 1 %}
+                                        <div class="text1">
+                                            <nobr class="open1">E1</nobr>
+                                        </div>
+                                        <div class="text2">
+                                            {{ task.e1_worker }}
+                                        </div>
+                                {% elif task.e1 == 2 %}
+                                        <div class="text1">
+                                            <nobr class="work2">E1</nobr>
+                                        </div>
+                                        <div class="text2">
+                                            {{ task.e1_worker }}
+                                        </div>
+                                {% elif task.e1 == 3 %}
+                                        <div class="text1">
+                                            <nobr class="done3">E1</nobr>
+                                        </div>
+                                        <div class="text2">
+                                            {{ task.e1_worker }}
+                                        </div>
+                                {% elif task.e1 == 0 %}
+                                        <div class="unuse0">
+                                        E1
+                                        </div>
+                                {% endif %}
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="hover-box">
+                                {% if task.l1 == 1 %}
+                                        <div class="text1">
+                                            <nobr class="open1">L1</nobr>
+                                        </div>
+                                        <div class="text2">
+                                            {{ task.l1_worker }}
+                                        </div>
+                                {% elif task.l1 == 2 %}
+                                        <div class="text1">
+                                            <nobr class="work2">L1</nobr>
+                                        </div>
+                                        <div class="text2">
+                                            {{ task.l1_worker }}
+                                        </div>
+                                {% elif task.l1 == 3 %}
+                                        <div class="text1">
+                                            <nobr class="done3">L1</nobr>
+                                        </div>
+                                        <div class="text2">
+                                            {{ task.l1_worker }}
+                                        </div>
+                                {% elif task.l1 == 0 %}
+                                        <div class="unuse0">
+                                        L1
+                                        </div>
+                                {% endif %}
+                            </div>
+                        </td>
+
+
+                        <td>
+                            <div class="hover-box">
+                                {% if task.kt == 1 %}
+                                        <div class="text1">
+                                            <nobr class="open1">KT</nobr>
+                                        </div>
+                                        <div class="text2">
+                                            {{ task.kt_worker }}
+                                        </div>
+                                {% elif task.kt == 2 %}
+                                        <div class="text1">
+                                            <nobr class="work2">KT</nobr>
+                                        </div>
+                                        <div class="text2">
+                                            {{ task.kt_worker }}
+                                        </div>
+                                {% elif task.kt == 3 %}
+                                        <div class="text1">
+                                            <nobr class="done3">KT</nobr>
+                                        </div>
+                                        <div class="text2">
+                                            {{ task.kt_worker }}
+                                        </div>
+                                {% elif task.kt == 0 %}
+                                        <div class="unuse0">
+                                        KT
+                                        </div>
+                                {% endif %}
+                            </div>
+                        </td>
+            
+                    <td>
+                        {% if task.EMPB == 1 %}
+                            Ja
+                        {% else%}
+                            Nein
+                        {% endif %}
+                    </td>
+
+                    <td>{{ task.user }}, {{ task.creationDate }} </td>
+                    <td> {{ task.leader }} </td>
+                    <td>{{ task.owner }}</td>
+                    <td> {{ task.desiredDate }} </td>
+                    <td>{{ task.startDate }}</td>
+                    <td>
+                        <div class="hover-box">
+                            <div class="text1"><img class="icon" src="{{ url_for('static', filename='chat.png') }}" alt="Icon"></div>
+                            <div class="text3">
+                                {{ task.note }}
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <a href="/"><img class="icon" src="{{ url_for('static', filename='folder.png') }}" alt="Icon"></a>
+                    </td>
+                    <td>
+                        <a href="/complete/{{ task.id }}"><img class="icon" src="{{ url_for('static', filename='check.png') }}" alt="Icon"></a>
+                    </td>
+
+                </tr>
+            <!--
+                    <tr class="task {% if task.completed %}completed{% endif %}"  style="border-bottom: 1px solid;border-right: 1px solid; border-left: 1px solid; font-size: 10;" >
+                        <td style="border-right: 0"> </td>
+                        <td style="border: 0"> </td>
+                        <td style="border: 0"> </td>
+                        <td style="border: 0"> </td>
+                        <td> </td>
+                        <td style="font-size: 14px;" >teder </td>
+                        <td></td>
+                        <td> </td>
+                        <td> thöbler</td>
+                        <td> ckaiser </td>
+                        <td> </td>
+                        <td> </td>
+                        <td style="border: 0"> </td>
+                        <td style="border-left: 0"> </td>
+                    </tr>
+            -->
+                     <tr style="border: 0 solid white; background-color: #ffffff"><td></td></tr>
+                {% endif %}
+            {% endfor %}
+
+        </table>
+        <p style="font-size:8px; float: right; color: lightgrey">Tobias Eder 2023</p>
+    </div>
+
+</body>
+</html>
