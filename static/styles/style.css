@@ -228,3 +228,22 @@
             background-color: #ddd;
             color: grey;
         }
+
+        .prozessplan td{
+         height: 70px;
+         width: 120px;
+         word-wrap: wrap-all;
+         border: 1px solid black;
+        }
+
+        .prozessplan img {
+        width:25px;
+        height: 12px;
+        }
+
+        #pfeil {
+        border: 0px;
+        width: 10px;
+        height: 15px;
+        text-align: left;
+        }
