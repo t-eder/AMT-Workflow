@@ -21,68 +21,20 @@
 
     <div class="container">
         <h3> >Start</h3>
-
-        <div class="container">
-            <h2>Status der Änderungsmitteilung</h2>
-            <nobr>ÄMT Nummer: </nobr><input type="text" name="AMT" placeholder="ÄMT Nummer" required>
-
-            <p>Status der Änderungsmitteilung</p>
-            <table class="prozessplan"
-                <tr >
-                    <td><div>ÄMT</div></td>
-                    <td id="pfeil"><img class="icon" src="{{ url_for('static', filename='next.png') }}" alt="Icon"></td>
-                    <td><div>Erfassung der ÄMT</div></td>
-                    <td id="pfeil"><img class="icon" src="{{ url_for('static', filename='next.png') }}" alt="Icon"></td>
-                    <td><div>Bewertung der ÄMT</div></td>
-                    <td  rowspan="3" id="pfeil"><img style="height: 125px; width: 65px;" class="icon" src="{{ url_for('static', filename='arrow-junction2.png') }}" alt="Icon"></td>
-                    <td><div>Bestände erfassen</div></td>
-                    <td id="pfeil"><img class="icon" src="{{ url_for('static', filename='next.png') }}" alt="Icon"></td>
-                    <td><div>Freigabe der ÄMT</div></td>
-                    <td id="pfeil"><img class="icon" src="{{ url_for('static', filename='next.png') }}" alt="Icon"></td>
-                    <td><div>Definition Endtermin</div></td>
-                    <td id="pfeil"><img class="icon" src="{{ url_for('static', filename='next.png') }}" alt="Icon"></td>
-                    <td><div>Kick Off</div></td>
-                    <td id="pfeil"><img class="icon" src="{{ url_for('static', filename='next.png') }}" alt="Icon"></td>
-                    <td><div>ÄMT einpflegen</div></td>
-                    <td id="pfeil"><img class="icon" src="{{ url_for('static', filename='next.png') }}" alt="Icon"></td>
-                    <td><div>QS Freigabe</div></td>
-                    <td id="pfeil"><img class="icon" src="{{ url_for('static', filename='next.png') }}" alt="Icon"></td>
-                    <td><div>FAs anpassen</div></td>
-                    <td id="pfeil"><img class="icon" src="{{ url_for('static', filename='next.png') }}" alt="Icon"></td>
-                    <td><div>Bericht</div></td>
-                </tr>
-                <tr>
-                    <td id="pfeil"></td>
-                    <td id="pfeil"></td>
-                    <td id="pfeil">Backoffice</td>
-                    <td id="pfeil"></td>
-                    <td id="pfeil">PM <img style="height: 40px; width: 43px;" class="icon" src="{{ url_for('static', filename='next2.png') }}" alt="Icon"></td>
-                    <td id="pfeil">PPS</td>
-                    <td id="pfeil"></td>
-                    <td id="pfeil">PM </td>
-                    <td id="pfeil"></td>
-                    <td id="pfeil">PPS</td>
-                    <td id="pfeil"></td>
-                    <td id="pfeil">PM</td>
-                    <td id="pfeil"></td>
-                    <td id="pfeil">TAV</td>
-                    <td id="pfeil"></td>
-                    <td id="pfeil">QS</td>
-                    <td id="pfeil"></td>
-                    <td id="pfeil">PPS</td>
-
-                <tr>
-                    <td colspan="3" id="pfeil"></td>
-                    <td id="pfeil"></td>
-                    <td>ÄMT aufbereiten</td>
-
-                </tr>
-                <tr>
-                    <td colspan="4" id="pfeil"></td>
-                    <td id="pfeil">TAV</td>
-                </tr>
-
-            </table>
+        <h2>Status der Änderungsmitteilung:</h2>
+        <input type="text" name="AMTNR" placeholder="ÄMT Nummer"><button type="submit">Anzeigen</button>
+        <div id="prozess" style="background-image: url( {{url_for('static', filename='Prozess.png')}} );">
+            <div id="link" style="left: 128px; top: 42px;" ><a href="/done" style="display: block;height:100%"></a></div>
+            <div id="link" style="left: 261px; top: 42px;" ><a href="/done" style="display: block;height:100%"></a></div>
+            <div id="link" style="left: 261px; top: 167px;" ><a href="/done" style="display: block;height:100%"></a></div>
+            <div id="link" style="left: 394px; top: 42px;" ><a href="/done" style="display: block;height:100%"></a></div>
+            <div id="link" style="left: 527px; top: 42px;" ><a href="/done" style="display: block;height:100%"></a></div>
+            <div id="link" style="left: 527px; top: 167px;" ><a href="/done" style="display: block;height:100%"></a></div>
+            <div id="link" style="left: 658px; top: 42px;" ><a href="/done" style="display: block;height:100%"></a></div>
+            <div id="link" style="left: 792px; top: 42px;" ><a href="/done" style="display: block;height:100%"></a></div>
+            <div id="link" style="left: 925px; top: 42px;" ><a href="/done" style="display: block;height:100%"></a></div>
+            <div id="link" style="left: 1057px; top: 42px;" ><a href="/done" style="display: block;height:100%"></a></div>
+            <div id="link" style="left: 1190px;; top: 42px;" ><a href="/done" style="display: block;height:100%"></a></div>
         </div>
 
 
