@@ -8,15 +8,7 @@
 </head>
 <body>
 
-    <div class="header">
-        <div style="float: left; padding-left: 50px; padding-top: 35px;"><img src="{{ url_for('static', filename='logo-weiss.svg') }}" alt="Greipl Logo" height="75"></div>
-
-        <div class="navbar">
-           <a href="/">Offen</a>
-           <a href="/done" style="color: #0082da; border-bottom: 3px solid #0082da;">Erledigt</a>
-           <a href="/add_mask">Erstellen</a>
-       </div>
-    </div>
+    {% include 'header.html' %}
 
 
     <div class="container">
