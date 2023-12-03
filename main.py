@@ -5,4 +5,4 @@ from view import collecting
 if __name__ == '__main__': #Überprüft ob die Python Datei direkt ausgeführt wird
     with app.app_context():  # Erstellt einen Anwendungscontext
         db.create_all()  # Erstellt die Datenbanktabellen
-    app.run(host="192.168.178.76", port=8000, debug=True)
+    app.run(host="0.0.0.0", port=8000, debug=True)

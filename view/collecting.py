@@ -63,9 +63,37 @@ def add_task():
     if request.form.getlist('kt'):
         kt = 1
 
-    new_task = Task(vorgang=vorgang, user=user, note=note, leader=leader, typ=typ, kat=kat, creationDate=creationDate, AMTNR=AMTNR, GGNR=GGNR, EMPB=EMPB, desiredDate=desiredDate, owner=owner,
-    m1=m1, m2=m2, m3=m3, m4=m4, pt=pt, e1=e1, l1=l1, kt=kt, startDate=startDate,
-    m1_worker=m1_worker, m2_worker=m2_worker, m3_worker=m3_worker, m4_worker=m4_worker, pt_worker=pt_worker, e1_worker=e1_worker, l1_worker=l1_worker, kt_worker=kt_worker)
+    new_task = Task(
+        vorgang=vorgang,
+        user=user,
+        note=note,
+        leader=leader,
+        typ=typ,
+        kat=kat,
+        creationDate=creationDate,
+        AMTNR=AMTNR,
+        GGNR=GGNR,
+        EMPB=EMPB,
+        desiredDate=desiredDate,
+        owner=owner,
+        m1=m1,
+        m2=m2,
+        m3=m3,
+        m4=m4,
+        pt=pt,
+        e1=e1,
+        l1=l1,
+        kt=kt,
+        startDate=startDate,
+        m1_worker=m1_worker,
+        m2_worker=m2_worker,
+        m3_worker=m3_worker,
+        m4_worker=m4_worker,
+        pt_worker=pt_worker,
+        e1_worker=e1_worker,
+        l1_worker=l1_worker,
+        kt_worker=kt_worker
+    )
     # Änderung in die Datenbank übertragen
     db.session.add(new_task)
     # Bestätigt die Änderung
