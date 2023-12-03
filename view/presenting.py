@@ -26,6 +26,12 @@ def edit_task(id):
     task = Task.query.filter_by(id=desired_id).first() # Führen Sie eine Abfrage aus, um die Aufgabe mit der gewünschten ID zu finden
     return render_template('edit_task.html', task=task)
 
+@app.route('/tav')
+def tav(): #ruft alle Aufgaben aus der Datenbank ab und rendert dann ein HTML-Template, um die Aufgaben auf der Webseite anzuzeigen.
+    tasks = Task.query.all()
+    return render_template('tav.html', tasks=tasks)
+
+
 @app.route('/data/<int:id>')
 def task_data(id):
     task = Task.query.get(id)

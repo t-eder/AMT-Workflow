@@ -70,9 +70,6 @@
         padding-top: 0px;
         }
 
-        .container input{
-        margin-left: 20px;
-        }
 
         .container fieldset {
         border: 0;
@@ -95,6 +92,12 @@
            background-color:#0b2945;
            height: 30px
            font-size: 12px;
+        }
+
+        .container span, label{
+            font-size: 14px;
+            padding: 5px;
+        }
         }
 
         .hover-box {
@@ -173,6 +176,7 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 14px;
+            width: 100px;
         }
 
         button {
@@ -190,11 +194,6 @@
             color: #0082da;
         }
 
-        .add-task label {
-            font-size: 14px;
-            cursor: pointer;
-            padding: 5px;
-        }
 
         .add-task div {
         margin: 20px;
