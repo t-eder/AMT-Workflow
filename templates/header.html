@@ -2,11 +2,11 @@
         <div style="float: left; padding-left: 50px; padding-top: 35px;"><img src="{{ url_for('static', filename='logo-weiss.svg') }}" alt="Greipl Logo" height="75"></div>
 
         <div class="navbar">
-           <a href="/" style="color: #0082da; border-bottom: 3px solid #0082da;">Start</a>
-           <a href="/">Backoffice</a>
-           <a href="/">PM</a>
-            <a href="/">PPS</a>
-            <a href="/">TAV</a>
-            <a href="/">QS</a>
-       </div>
+        <a href="/" class="{% if request.path == '/' %}active-link{% endif %}">Start</a>
+        <a href="/add_mask" class="{% if request.path == '/add_mask' %}active-link{% endif %}">Erfassen</a>
+        <a href="/" class="{% if request.path == '/' %}active-link{% endif %}">PM</a>
+        <a href="/" class="{% if request.path == '/' %}active-link{% endif %}">PPS</a>
+        <a href="/" class="{% if request.path == '/' %}active-link{% endif %}">TAV</a>
+        <a href="/" class="{% if request.path == '/' %}active-link{% endif %}">QS</a>
+    </div>
     </div>

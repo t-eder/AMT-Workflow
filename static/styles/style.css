@@ -245,3 +245,8 @@
            background-color: green;
            opacity: .5;
         }
+
+        .active-link {
+            color: #0082da;
+            border-bottom: 3px solid #0082da;
+        }
