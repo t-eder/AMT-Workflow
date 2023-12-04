@@ -58,8 +58,6 @@
         color: black;
         font-size: 16px;
         text-decoration: bold;
-        margin: 10px;
-        padding-left: 10px
         }
 
         .container h3 {
@@ -67,7 +65,7 @@
         font-size: 16px;
         text-decoration:bold;
         margin-top: 0px;
-        padding-top: 0px;
+        padding-top: 20px;
         }
 
 
@@ -241,11 +239,29 @@
            position: absolute;
            height: 56px;
            width: 94px;
+           background-color: none;
+           opacity: .5;
+        }
+
+        #link_check {
+           position: absolute;
+           height: 56px;
+           width: 94px;
            background-color: green;
            opacity: .5;
+        }
+
+        #table1 th,tr,td{
+           border: 1px solid black;
+           border-collapse: collapse;
+           padding: 3px;
+           min-width: 40px;
+           text-align: left;
+
         }
 
         .active-link {
             color: #0082da;
             border-bottom: 3px solid #0082da;
         }
+

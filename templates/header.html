@@ -4,9 +4,9 @@
         <div class="navbar">
         <a href="/" class="{% if request.path == '/' %}active-link{% endif %}">Start</a>
         <a href="/add_mask" class="{% if request.path == '/add_mask' %}active-link{% endif %}">Erfassen</a>
-        <a href="/" class="{% if request.path == '/X' %}active-link{% endif %}">PM</a>
-        <a href="/" class="{% if request.path == '/X' %}active-link{% endif %}">PPS</a>
+        <a href="/PM" class="{% if request.path == '/PM' %}active-link{% endif %}">PM</a>
+        <a href="/PPS" class="{% if request.path == '/PPS' %}active-link{% endif %}">PPS</a>
         <a href="/tav" class="{% if request.path == '/tav' %}active-link{% endif %}">TAV</a>
-        <a href="/" class="{% if request.path == '/X' %}active-link{% endif %}">QS</a>
-    </div>
-    </div>
+        <a href="/QS" class="{% if request.path == '/QS' %}active-link{% endif %}">QS</a>
+        </div>
+</div>

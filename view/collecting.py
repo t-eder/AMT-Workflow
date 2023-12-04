@@ -63,6 +63,8 @@ def add_task():
     if request.form.getlist('kt'):
         kt = 1
 
+    state = 1
+
     new_task = Task(
         vorgang=vorgang,
         user=user,
@@ -92,7 +94,8 @@ def add_task():
         pt_worker=pt_worker,
         e1_worker=e1_worker,
         l1_worker=l1_worker,
-        kt_worker=kt_worker
+        kt_worker=kt_worker,
+        state=state
     )
     # Änderung in die Datenbank übertragen
     db.session.add(new_task)

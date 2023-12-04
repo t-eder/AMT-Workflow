@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ÄMT/NT-Liste</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+
+</head>
+<body>
+        <div class="header">
+        <div style="float: left; padding-left: 50px; padding-top: 35px;"><img src="{{ url_for('static', filename='logo-weiss.svg') }}" alt="Greipl Logo" height="75"></div>
+
+        <div class="navbar">
+            <a href="/" class="active-link">Zurück</a>
+        </div>
+</div>
+
+
+
+            <div class="container">
+                <h2>Status der Änderungsmitteilung {{ task.AMTNR }}:</h2>
+
+                <div id="prozess" style="background-image: url( {{url_for('static', filename='Prozess.png')}} );">
+                    <div id="{% if task.state > 0 %}link_check{% else %}link{%endif%}" style="left: 128px; top: 42px;" >
+                        <a href="/done" style="display: block;height:100%"></a></div>
+                    <div id="{% if task.state > 1 %}link_check{% else %}link{%endif%}" style="left: 261px; top: 42px;" >
+                        <a href="/done" style="display: block;height:100%"></a></div>
+                    <div id="{% if task.state > 2 %}link_check{% else %}link{%endif%}" style="left: 261px; top: 167px;" >
+                        <a href="/done" style="display: block;height:100%"></a></div>
+                    <div id="link" style="left: 394px; top: 42px;" >
+                        <a href="/done" style="display: block;height:100%"></a></div>
+                    <div id="link" style="left: 527px; top: 42px;" >
+                        <a href="/done" style="display: block;height:100%"></a></div>
+                    <div id="link" style="left: 527px; top: 167px;" >
+                        <a href="/done" style="display: block;height:100%"></a></div>
+                    <div id="link" style="left: 658px; top: 42px;" >
+                        <a href="/done" style="display: block;height:100%"></a></div>
+                    <div id="link" style="left: 791px; top: 42px;" >
+                        <a href="/done" style="display: block;height:100%"></a></div>
+                    <div id="link" style="left: 924px; top: 42px;" >
+                        <a href="/done" style="display: block;height:100%"></a></div>
+                    <div id="link" style="left: 1057px; top: 42px;" >
+                        <a href="/done" style="display: block;height:100%"></a></div>
+                    <div id="link" style="left: 1190px;; top: 42px;" >
+                        <a href="/done" style="display: block;height:100%"></a></div>
+                </div>
+
+                <h2>Grunddaten:</h2>
+                <table id="table1">
+                   <tr>
+                            <th>Typ</th>
+                            <th>Status</th>
+                            <th>Greipl-Nr.</th>
+                            <th>Bezeichnung</th>
+                            <th>Vorgang</th>
+                            <th>Ersteller</th>
+                            <th>Projektleitung</th>
+                            <th>TAV</th>
+                            <th>Termin</th>
+                            <th>TAV-Start</th>
+                   </tr>
+                    <tr>
+                        <tr>
+                            <td>{{ task.typ }}</td>
+                            <td>{{ task.state }}, Erfasst</td>
+                            <td>{{ task.GGNR }}</td>
+                            <td>Bezeichnung aus Infra</td>
+                            <td>{{ task.vorgang }}</td>
+                            <td>{{ task.user }}, {{ task.creationDate }} </td>
+                            <td> {{ task.leader }} </td>
+                            <td>{{ task.owner }}</td>
+                            <td> {{ task.desiredDate }} </td>
+                            <td>{{ task.startDate }}</td>
+                        </tr>
+                </table>
+
+                <h2>Änderungsdaten:</h2>
+                <table id="table1">
+                   <tr>
+                            <th>ÄMT-Nr.</th>
+                            <th>Alte REV</th>
+                            <th>Neue REV</th>
+                            <th>Antrag</th>
+                            <th>Änderungskategorie</th>
+                   </tr>
+                    <tr>
+                        <tr>
+                            <td>{{ task.AMTNR }}</td>
+                            <td>{{ task.REV }}</td>
+                            <td>{{ task.REV_new }}</td>
+                            <td>{% if task.change == 0 %}Intern{% else %}Extern{%endif%}</td>
+                            <td>{% if task.change_kat == 0 %}A = Einfach{% else %}B = Komplex{%endif%}</td>
+                        </tr>
+                </table>
+
+
+
+        <p style="font-size:8px; float: right; color: lightgrey">Tobias Eder 2023</p>
+    </div>
+
+</body>
+</html>
