@@ -32,7 +32,7 @@
 
                         <tr class="task {% if task.completed %}completed{% endif %}" style="border-bottom: 1px solid; border-right: 1px solid; border-left: 1px solid;" >
 
-                            <td><center><a href="/stockrecord/{{ task.id }}" style="background-color: transparent; padding-top:3px;"><img class="icon" src="{{ url_for('static', filename='edit.png') }}" alt="Icon"></a></center></td>
+                            <td><center><a href="{% if task.state == 3 %}/stockrecord/{{ task.id }}{% elif task.state == 6 %}/date/{{ task.id }}{% endif %}" style="background-color: transparent; padding-top:3px;"><img class="icon" src="{{ url_for('static', filename='edit.png') }}" alt="Icon"></a></center></td>
                             <td>{{ task.typ }}</td>
                             <td>
                                 {% include 'state.html' %}

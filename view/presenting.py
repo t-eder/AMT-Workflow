@@ -44,6 +44,14 @@ def release(id):
     amt_parts = AMT_PARTS.query.all()
     return render_template('release.html', task=task, amt_parts=amt_parts)
 
+@app.route('/date/<int:id>')
+def date(id):
+    task = Task.query.get(id)
+    desired_id = id
+    task = Task.query.filter_by(id=desired_id).first() # Führen Sie eine Abfrage aus, um die Aufgabe mit der gewünschten ID zu finden
+    amt_parts = AMT_PARTS.query.all()
+    return render_template('date.html', task=task, amt_parts=amt_parts)
+
 @app.route('/process/<int:id>')
 def process(id):
     task = Task.query.get(id)

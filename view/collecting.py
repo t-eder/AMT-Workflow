@@ -12,9 +12,6 @@ def add_task():
     leader = request.form.get('leader')
     AMTNR = request.form.get('AMTNR')
     GGNR = request.form.get('GGNR')
-    desiredDate = request.form.get('desiredDate')
-    desiredDateObject = dt.datetime.strptime(desiredDate,"%Y-%m-%d").date()
-    desiredDate = desiredDateObject.strftime("%d.%m.%y")
     creationDate = dt.date.today()
     creationDate = creationDate.strftime("%d.%m.%y")
     owner = ""
@@ -76,7 +73,6 @@ def add_task():
         AMTNR=AMTNR,
         GGNR=GGNR,
         EMPB=EMPB,
-        desiredDate=desiredDate,
         owner=owner,
         m1=m1,
         m2=m2,
@@ -212,6 +208,21 @@ def process_add(id):
             return redirect('/PM')
         else:
             return redirect(f'/tav')
+
+
+@app.route('/date/add/<int:id>', methods=['POST'])
+def date_add(id):
+        task = Task.query.get(id)  # Holen Sie sich den vorhandenen Eintrag aus der Datenbank basierend auf der übergebenen ID
+        if task:
+            task.note = request.form.get('note')  # extrahiert den Wert, der im HTML-Formular mit dem Namen 'Vorgang' eingegeben wurde
+            desiredDate = request.form.get('desiredDate')
+            desiredDateObject = dt.datetime.strptime(desiredDate, "%Y-%m-%d").date()
+            task.desiredDate = desiredDateObject.strftime("%d.%m.%y")
+            task.state = 7
+
+            db.session.commit()  # Bestätigt die Änderung
+
+        return redirect('/PPS')
 
 @app.route('/GETAddPart/<int:id>', methods=['POST', 'GET'])
 def AddPart(id):
