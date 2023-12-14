@@ -164,6 +164,16 @@ def calculate_add(id):
 
     return redirect('/PM')
 
+@app.route('/release/add/<int:id>', methods=['POST'])
+def release_add(id):
+    task = Task.query.get(id)  # Holen Sie sich den vorhandenen Eintrag aus der Datenbank basierend auf der übergebenen ID
+    if task:
+        task.note = request.form.get('note')  # extrahiert den Wert, der im HTML-Formular mit dem Namen 'Vorgang' eingegeben wurde
+
+        task.state = 6
+        db.session.commit()  # Bestätigt die Änderung
+
+    return redirect('/PM')
 
 @app.route('/process/add/<int:id>', methods=['POST'])
 def process_add(id):

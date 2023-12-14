@@ -14,8 +14,8 @@ db = SQLAlchemy(app)
 class Task(db.Model):  # Hier wird eine Datenbanktabelle definiert, die den Namen "Task" hat und von db.Model erbt
     id = db.Column(db.Integer, primary_key=True)
     state = db.Column(db.Integer, default=0)
-        # 1 = Erfasst, 2 = Bewertet, 3 = aufbereit, 4 = Bestände erfasst, 5 = kalkuliert, 6 = terminiert, 7 = Kick off,
-        # 8 = AMT eingepflegt, 9 = QS Freigegeben, 10 = FAs angepasst
+        # 1 = Erfasst, 2 = Bewertet, 3 = aufbereit, 4 = Bestände erfasst, 5 = kalkuliert, 6 = Freigegeben, 7 = terminiert, 8 = Kick off,
+        # 9 = AMT eingepflegt, 10 = QS Freigegeben, 11 = FAs angepasst
 
     # Daten aus Backoffice
     typ = db.Column(db.String(5), nullable=False)

@@ -1,0 +1,24 @@
+                                <!--{{ task.state }},-->
+                                {% if task.state == 1 %}
+                                    Änderung bewerten
+                                {% elif task.state == 2 %}
+                                    Änderung ausarbeiten
+                                {% elif task.state == 3 %}
+                                    Bestände erfassen
+                                {% elif task.state == 4 %}
+                                    Kalkulieren
+                                {% elif task.state == 5 %}
+                                    Freigeben
+                                {% elif task.state == 6 %}
+                                    Terminieren
+                                {% elif task.state == 7 %}
+                                    Kick Off
+                                {% elif task.state == 8 %}
+                                    Einpflegen
+                                {% elif task.state == 9 %}
+                                    QS Freigabe
+                                {% elif task.state == 10 %}
+                                    FAs anpassen
+                                {% elif task.state == 10 %}
+                                    Abgeschlossen
+                                {% endif %}

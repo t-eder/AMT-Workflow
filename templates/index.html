@@ -37,28 +37,7 @@
                             <td>{{ task.AMTNR }}</td>
                             <td>{{ task.vorgang }}</td>
                             <td>
-                                {{ task.state }},
-                                {% if task.state == 1 %}
-                                Änderung bewerten
-                                {% elif task.state == 2 %}
-                                Änderung ausarbeiten
-                                {% elif task.state == 3 %}
-                                Bestände erfassen
-                                {% elif task.state == 4 %}
-                                Kalkulieren
-                                {% elif task.state == 5 %}
-                                Terminieren
-                                {% elif task.state == 6 %}
-                                Kick Off
-                                {% elif task.state == 7 %}
-                                Einpflegen
-                                {% elif task.state == 8 %}
-                                QS Freigabe
-                                {% elif task.state == 9 %}
-                                FA anpassen
-                                {% elif task.state == 10 %}
-                                Abgeschlossen
-                                {% endif %}
+                                {% include 'state.html' %}
                             </td>
                             <td>{{ task.GGNR }}</td>
                             <td>Bezeichnung aus Infra</td>
