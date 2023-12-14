@@ -2,7 +2,7 @@ from flask import render_template
 from flask import request
 from flask import redirect
 import datetime as dt
-from model import app, db, Task
+from model import app, db, Task, AMT_PARTS
 
 @app.route('/add', methods=['POST'])
 def add_task():
@@ -121,29 +121,7 @@ def edit(id):
         task.kt_worker = request.form.get('kt_worker')
         task.note = request.form.get('note')
 
-        m1 = request.form.getlist('m1')
-        task.m1 = "".join(m1)
-
-        m2 = request.form.getlist('m2')
-        task.m2 = "".join(m2)
-
-        m3 = request.form.getlist('m3')
-        task.m3 = "".join(m3)
-
-        m4 = request.form.getlist('m4')
-        task.m4 = "".join(m4)
-
-        pt = request.form.getlist('pt')
-        task.pt = "".join(pt)
-
-        e1 = request.form.getlist('e1')
-        task.e1 = "".join(e1)
-
-        l1 = request.form.getlist('l1')
-        task.l1 = "".join(l1)
-
-        kt = request.form.getlist('kt')
-        task.kt = "".join(kt)
+        task.state = 3
 
         if task.startDate == "Offen" and int(task.m1) > 1 or int(task.m2) > 1 or int(task.m3) > 1 or int(task.m4) > 1 or int(task.pt) > 1 or int(task.e1) > 1 or int(task.l1) > 1 or int(task.kt) > 1:
             startDate = dt.date.today()
@@ -152,6 +130,123 @@ def edit(id):
         db.session.commit() # Bestätigt die Änderung
 
     return redirect('/')
+
+@app.route('/categorize/add/<int:id>', methods=['POST'])
+def categorize_add(id):
+    task = Task.query.get(id)  # Holen Sie sich den vorhandenen Eintrag aus der Datenbank basierend auf der übergebenen ID
+    if task:
+        task.note = request.form.get('note')  # extrahiert den Wert, der im HTML-Formular mit dem Namen 'Vorgang' eingegeben wurde
+
+        change_kat = request.form.getlist('change_kat')
+
+        if "A" in change_kat:
+            task.change_kat = False
+        else:
+            task.change_kat = True
+
+        task.state = 2
+        db.session.commit()  # Bestätigt die Änderung
+
+    if task.change_kat == True:
+        return redirect('/PM')
+    else:
+        return redirect(f'/process/{id}')
+@app.route('/process/add/<int:id>', methods=['POST'])
+def process_add(id):
+        task = Task.query.get(id)  # Holen Sie sich den vorhandenen Eintrag aus der Datenbank basierend auf der übergebenen ID
+        if task:
+            m1 = request.form.getlist('m1')
+            task.m1 = "".join(m1)
+
+            m2 = request.form.getlist('m2')
+            task.m2 = "".join(m2)
+
+            m3 = request.form.getlist('m3')
+            task.m3 = "".join(m3)
+
+            m4 = request.form.getlist('m4')
+            task.m4 = "".join(m4)
+
+            pt = request.form.getlist('pt')
+            task.pt = "".join(pt)
+
+            e1 = request.form.getlist('e1')
+            task.e1 = "".join(e1)
+
+            l1 = request.form.getlist('l1')
+            task.l1 = "".join(l1)
+
+            kt = request.form.getlist('kt')
+            task.kt = "".join(kt)
+
+            task.note = request.form.get('note')  # extrahiert den Wert, der im HTML-Formular mit dem Namen 'Vorgang' eingegeben wurde
+
+            task.state = 3
+            db.session.commit()  # Bestätigt die Änderung
+
+        if task.change_kat == False:
+            return redirect('/PM')
+        else:
+            return redirect(f'/tav')
+
+@app.route('/GETAddPart/<int:id>', methods=['POST', 'GET'])
+def AddPart(id):
+    task = Task.query.get(id)
+    print(request.form)
+
+    AMTNR_PART = task.AMTNR
+    GGNR_PART = request.form.get('GGNR_PART')
+    REV_PART = request.form.get('REV_PART')
+    note_PART = request.form.get('note_PART')
+    valid = request.form.get('valid_PART')
+
+    if "0" in valid:
+        valid_PART = False
+    else:
+        valid_PART = True
+
+    NEW_AMT_PARTS = AMT_PARTS(
+        GGNR_PART=GGNR_PART,
+        AMTNR_PART=AMTNR_PART,
+        REV_PART=REV_PART,
+        note_PART=note_PART,
+        valid_PART=valid_PART
+    )
+    # Änderung in die Datenbank übertragen
+    db.session.add(NEW_AMT_PARTS)
+    # Bestätigt die Änderung
+    db.session.commit()
+
+    return redirect(f'/process/{id}')
+
+@app.route('/process/part/delete/<int:PARTid>/<int:id>', methods=['POST', 'GET'])
+def DeletePart(PARTid,id):
+    amt_parts = AMT_PARTS.query.get(PARTid)
+
+    db.session.delete(amt_parts)
+    db.session.commit()
+
+    return redirect(f'/process/{id}')
+
+@app.route('/stockrecord/part/addstock/<int:PARTid>/<int:id>', methods=['POST', 'GET'])
+def AddStock(id,PARTid):
+    amt_parts = AMT_PARTS.query.get(PARTid)
+    amt_parts.stock_PART = request.form.get('stock_PART')
+    amt_parts.productionstock_PART = request.form.get('productionstock_PART')
+    amt_parts.orderstock_PART = request.form.get('orderstock_PART')
+
+    db.session.commit()
+
+    return redirect(f'/stockrecord/{id}')
+
+@app.route('/stockrecord/add/<int:id>', methods=['POST', 'GET'])
+def stockrecord_add(id):
+    task = Task.query.get(id)
+    task.note = request.form.get('note')  # extrahiert den Wert, der im HTML-Formular mit dem Namen 'Vorgang' eingegeben wurde
+    task.state = 4
+    db.session.commit()  # Bestätigt die Änderung
+
+    return redirect('/PPS')
 
 @app.route('/complete/<int:id>')  #Wenn  URL /complete + Zahl(ID) wird aufgerufen wird
 def complete_task(id):

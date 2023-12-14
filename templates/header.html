@@ -2,11 +2,11 @@
         <div style="float: left; padding-left: 50px; padding-top: 35px;"><img src="{{ url_for('static', filename='logo-weiss.svg') }}" alt="Greipl Logo" height="75"></div>
 
         <div class="navbar">
-        <a href="/" class="{% if request.path == '/' %}active-link{% endif %}">Start</a>
-        <a href="/add_mask" class="{% if request.path == '/add_mask' %}active-link{% endif %}">Erfassen</a>
-        <a href="/PM" class="{% if request.path == '/PM' %}active-link{% endif %}">PM</a>
-        <a href="/PPS" class="{% if request.path == '/PPS' %}active-link{% endif %}">PPS</a>
-        <a href="/tav" class="{% if request.path == '/tav' %}active-link{% endif %}">TAV</a>
-        <a href="/QS" class="{% if request.path == '/QS' %}active-link{% endif %}">QS</a>
+        <a href="/" id="{% if request.path == '/' %}active-link{% endif %}">Start</a>
+        <a href="/add_mask" id="{% if request.path == '/add_mask' %}active-link{% endif %}">Erfassen</a>
+        <a href="/PM" id="{% if request.path == '/PM' %}active-link{% endif %}">PM</a>
+        <a href="/PPS" id="{% if request.path == '/PPS' %}active-link{% endif %}">PPS</a>
+        <a href="/tav" id="{% if request.path == '/tav' %}active-link{% endif %}">TAV</a>
+        <a href="/QS" id="{% if request.path == '/QS' %}active-link{% endif %}">QS</a>
         </div>
 </div>

@@ -55,17 +55,18 @@
         }
 
         .container h2 {
-        color: black;
-        font-size: 16px;
-        text-decoration: bold;
-        }
-
-        .container h3 {
         color: #0b2945;
         font-size: 16px;
         text-decoration:bold;
         margin-top: 0px;
         padding-top: 20px;
+        }
+
+        h3 {
+        color: black;
+        font-size: 16px;
+        text-decoration: bold;
+        margin: 10px;
         }
 
 
@@ -80,6 +81,7 @@
            padding: 3px;
            min-width: 40px;
            text-align: center;
+           margin: 10px;
         }
 
         .container th{
@@ -162,19 +164,28 @@
 
         .add-task {
             background-color: #ffffff;
-            border: 1px solid #e0e0e0;
+            border: 0px solid #e0e0e0;
             padding: 10px;
             margin-bottom: 20px;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        .add-task input[type="text"] {
+        input[type="text"] {
+            margin: 10px;
             padding: 5px;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 14px;
             width: 100px;
+        }
+
+        #table_input {
+        margin: 0px;
+        }
+
+        textarea {
+        margin: 10px;
         }
 
         button {
@@ -195,7 +206,6 @@
 
         .add-task div {
         margin: 20px;
-        padding: 10px;
         width: 90%;
         border: 1px solid #ccc
         }
@@ -205,8 +215,9 @@
         font-size: 14px;
         }
 
-        .add-task input[type="checkbox"] {
+        input[type="checkbox"] {
         transform : scale(1.4);
+        margin: 10px;
         }
 
         .open1 {
@@ -251,17 +262,37 @@
            opacity: .5;
         }
 
-        #table1 th,tr,td{
+        #table1 tr,td{
            border: 1px solid black;
            border-collapse: collapse;
            padding: 3px;
-           min-width: 40px;
            text-align: left;
-
+           font-size: 14px;
+        }
+        #table1 th {
+            text-align: center;
         }
 
-        .active-link {
+
+        #active-link {
             color: #0082da;
             border-bottom: 3px solid #0082da;
+            color: #0082da;
         }
 
+        .tableFixHead {
+            overflow: auto;
+            height: 350px;
+        }
+         .tableFixHead thead th {
+             position: sticky; top: 0;
+             z-index: 1;
+         }
+
+         .tableFixHead table, th, td {
+            border: 1px solid black;
+             border-collapse: collapse;
+             padding: 3px;
+             text-align: left;
+             font-size: 14px;
+         }

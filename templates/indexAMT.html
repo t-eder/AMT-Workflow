@@ -7,17 +7,16 @@
 </head>
 <body>
         <div class="header">
-        <div style="float: left; padding-left: 50px; padding-top: 35px;"><img src="{{ url_for('static', filename='logo-weiss.svg') }}" alt="Greipl Logo" height="75"></div>
-
-        <div class="navbar">
-            <a href="/" class="active-link">Zurück</a>
+            <div style="float: left; padding-left: 50px; padding-top: 35px;"><img src="{{ url_for('static', filename='logo-weiss.svg') }}" alt="Greipl Logo" height="75"></div>
+            <div class="navbar">
+                <a href="/" class="active-link">Zurück</a>
+            </div>
         </div>
-</div>
 
 
 
             <div class="container">
-                <h2>Status der Änderungsmitteilung {{ task.AMTNR }}:</h2>
+                <h2>Änderungsmappe Nr.: {{ task.AMTNR }}</h2>
 
                 <div id="prozess" style="background-image: url( {{url_for('static', filename='Prozess.png')}} );">
                     <div id="{% if task.state > 0 %}link_check{% else %}link{%endif%}" style="left: 128px; top: 42px;" >
@@ -26,9 +25,9 @@
                         <a href="/done" style="display: block;height:100%"></a></div>
                     <div id="{% if task.state > 2 %}link_check{% else %}link{%endif%}" style="left: 261px; top: 167px;" >
                         <a href="/done" style="display: block;height:100%"></a></div>
-                    <div id="link" style="left: 394px; top: 42px;" >
+                    <div id="{% if task.state > 3 %}link_check{% else %}link{%endif%}" style="left: 394px; top: 42px;" >
                         <a href="/done" style="display: block;height:100%"></a></div>
-                    <div id="link" style="left: 527px; top: 42px;" >
+                    <div id="{% if task.state > 4 %}link_check{% else %}link{%endif%}" style="left: 527px; top: 42px;" >
                         <a href="/done" style="display: block;height:100%"></a></div>
                     <div id="link" style="left: 527px; top: 167px;" >
                         <a href="/done" style="display: block;height:100%"></a></div>
@@ -61,7 +60,30 @@
                     <tr>
                         <tr>
                             <td>{{ task.typ }}</td>
-                            <td>{{ task.state }}, Erfasst</td>
+                            <td>
+                                {{ task.state }},
+                                {% if task.state == 1 %}
+                                Erfasst
+                                {% elif task.state == 2 %}
+                                Bewertet
+                                {% elif task.state == 3 %}
+                                Aufbereitet
+                                {% elif task.state == 4 %}
+                                Bestände erfasst
+                                {% elif task.state == 5 %}
+                                Kalkuliert
+                                {% elif task.state == 6 %}
+                                Terminiert
+                                {% elif task.state == 7 %}
+                                Kick Off
+                                {% elif task.state == 8 %}
+                                ÄMT eingepflegt
+                                {% elif task.state == 9 %}
+                                QS Freigabe
+                                {% elif task.state == 10 %}
+                                FAs angepasst
+                                {% endif %}
+                            </td>
                             <td>{{ task.GGNR }}</td>
                             <td>Bezeichnung aus Infra</td>
                             <td>{{ task.vorgang }}</td>
@@ -71,7 +93,7 @@
                             <td> {{ task.desiredDate }} </td>
                             <td>{{ task.startDate }}</td>
                         </tr>
-                </table>
+                    </table>
 
                 <h2>Änderungsdaten:</h2>
                 <table id="table1">
@@ -91,6 +113,44 @@
                             <td>{% if task.change_kat == 0 %}A = Einfach{% else %}B = Komplex{%endif%}</td>
                         </tr>
                 </table>
+
+                <h2>Betroffene Teile:</h2>
+                <table id="table1">
+                           <tr>
+                                    <th>Greipl-Nr.</th>
+                                    <th>Bezeichnung</th>
+                                    <th>Aktuelle Rev</th>
+                                    <th>Neue Rev</th>
+                                    <th>Gültigkeit</th>
+                                    <th>Beschreibung</th>
+                                    <th style="width: 100px;">Lagerbestand</th>
+                                    <th style="width: 100px;">Fertigungsbestand</th>
+                                    <th style="width: 100px;">Zulauf</th>
+                           </tr>
+                            {% for amt_part in amt_parts %}
+
+                                {% if amt_part.AMTNR_PART == task.AMTNR %}
+                                    <tr>
+                                        <td>{{ amt_part.GGNR_PART }}</td>
+                                        <td>Bezeichnung</td>
+                                        <td>{{ amt_part.REV_PART }}</td>
+                                        <td>{{ amt_part.REV_new_PART }}</td>
+                                        <td>
+                                            {% if amt_part.valid_PART == False %}
+                                                    Neuauftrag
+                                                {% elif amt_part.valid_PART == True %}
+                                                    Sofort
+                                                {% endif %}
+                                        </td>
+                                        <td>{{ amt_part.note_PART }}</td>
+                                        <td>{{ amt_part.stock_PART }}</td>
+                                        <td>{{ amt_part.productionstock_PART }}</td>
+                                        <td>{{ amt_part.orderstock_PART }}</td>
+                                    </tr>
+                                 {% endif %}
+                            {% endfor %}
+
+                     </table>
 
 
 

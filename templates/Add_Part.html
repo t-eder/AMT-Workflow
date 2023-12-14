@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>PM Eintrag bearbeiten</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+</head>
+
+
+<body>
+
+        <div class="header">
+            <div style="float: left; padding-left: 50px; padding-top: 35px;"><img src="{{ url_for('static', filename='logo-weiss.svg') }}" alt="Greipl Logo" height="75"></div>
+            <div class="navbar">
+                <a href="/PM" class="active-link">Zurück</a>
+            </div>
+        </div>
+
+
+    <div class="container">
+        <p style="background-color: #0b2945; color: white; padding: 10px; margin: 0px; width: 80%">Bewertung der Änderungsmitteilung:</p>
+
+
+                     <form  action="/GETAddPart/{{ task.id }}" method="POST" class="add-task" style="width: 80%">
+                         <h3>Betroffenes Teil erfassen:</h3>
+                         <table id="table1">
+                           <tr>
+                                    <th>Greipl-Nr.</th>
+                                    <th>Bezeichnung</th>
+                                    <th>Aktuelle Rev</th>
+                                    <th>Neue Rev</th>
+                                    <th>Beschreibung</th>
+                                    <th></th>
+                           </tr>
+
+                            <tr>
+                                    <td><input type="text" name="GGNR_PART" placeholder="Greipl Nummer" required></td>
+                                    <td>Bezeichnung aus Infra</td>
+                                    <td>Rev aus Infra</td>
+                                    <td><input type="text" name="REV_PART" placeholder="Neue REV" required></td>
+                                    <td><input type="text" name="PARTnote" placeholder="Änderungsbeschreibung" style="width: 400px;" required></td>
+                                    <td><center><a href="/Add_Part/{{ task.id }}" style="background-color: transparent; padding-top:3px;"><img class="icon" src="{{ url_for('static', filename='add.png') }}" alt="Icon"></a></center></td>
+                            </tr>
+                        </table>
+                         <div style="border: 0px; margin:10px"><button type="submit">Hinzufügen</button></div>
+                     </form>
+
+                 </div>
+
+</body>
+</html>

@@ -28,34 +28,34 @@
                    </tr>
 
                 {% for task in tasks %}
-                    {% if task.state == 1 or task.state ==  4 or task.state ==  6 or (task.state ==  2 and task.change_kat == false) %}
+                    {% if task.state == 3 or task.state ==  5 %}
 
                         <tr class="task {% if task.completed %}completed{% endif %}" style="border-bottom: 1px solid; border-right: 1px solid; border-left: 1px solid;" >
 
-                            <td><center><a href="/categorize/{{ task.id }}" style="background-color: transparent; padding-top:3px;"><img class="icon" src="{{ url_for('static', filename='edit.png') }}" alt="Icon"></a></center></td>
+                            <td><center><a href="/PM_edit/{{ task.id }}" style="background-color: transparent; padding-top:3px;"><img class="icon" src="{{ url_for('static', filename='edit.png') }}" alt="Icon"></a></center></td>
                             <td>{{ task.typ }}</td>
                             <td>
                                 {{ task.state }},
                                 {% if task.state == 1 %}
-                                Änderung bewerten
+                                Erfasst
                                 {% elif task.state == 2 %}
-                                Änderung ausarbeiten
+                                Bewertet
                                 {% elif task.state == 3 %}
-                                Bestände erfassen
+                                Aufbereitet
                                 {% elif task.state == 4 %}
-                                Kalkulieren
+                                Bestände erfasst
                                 {% elif task.state == 5 %}
-                                Terminieren
+                                Kalkuliert
                                 {% elif task.state == 6 %}
-                                Kick Off
+                                Terminiert
                                 {% elif task.state == 7 %}
-                                Einpflegen
+                                Kick Off
                                 {% elif task.state == 8 %}
-                                QS Freigabe
+                                ÄMT eingepflegt
                                 {% elif task.state == 9 %}
-                                FA anpassen
+                                QS Freigabe
                                 {% elif task.state == 10 %}
-                                Abgeschlossen
+                                FAs angepasst
                                 {% endif %}
                             </td>
                             <td>{{ task.GGNR }}</td>

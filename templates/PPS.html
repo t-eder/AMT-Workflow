@@ -10,11 +10,11 @@
 {% include 'header.html' %}
 
     <div class="container">
-        <h2>Offene Aufgaben Produktionsplanung und -steuerung:</h2>
+        <h2>Offene Aufgaben Projektmanagement:</h2>
 
             <table>
                    <tr style="font-size: 14px">
-                            <th>Anzeigen</th>
+                            <th>Bearbeiten</th>
                             <th>Typ</th>
                             <th>Status</th>
                             <th>Greipl-Nr.</th>
@@ -25,17 +25,39 @@
                             <th>Projektleitung</th>
                             <th>Termin</th>
                             <th>TAV-Start</th>
-
                    </tr>
 
                 {% for task in tasks %}
-                    {% if not task.completed %}
+                    {% if task.state == 3 or task.state ==  5 %}
 
                         <tr class="task {% if task.completed %}completed{% endif %}" style="border-bottom: 1px solid; border-right: 1px solid; border-left: 1px solid;" >
 
-                            <td><center><a href="/index/{{ task.id }}" style="background-color: transparent; padding-top:3px;"><img class="icon" src="{{ url_for('static', filename='list.png') }}" alt="Icon"></a></center></td>
+                            <td><center><a href="/stockrecord/{{ task.id }}" style="background-color: transparent; padding-top:3px;"><img class="icon" src="{{ url_for('static', filename='edit.png') }}" alt="Icon"></a></center></td>
                             <td>{{ task.typ }}</td>
-                            <td>{{ task.state }}, Erfasst</td>
+                            <td>
+                                {{ task.state }},
+                                {% if task.state == 1 %}
+                                Änderung bewerten
+                                {% elif task.state == 2 %}
+                                Änderung ausarbeiten
+                                {% elif task.state == 3 %}
+                                Bestände erfassen
+                                {% elif task.state == 4 %}
+                                Kalkulieren
+                                {% elif task.state == 5 %}
+                                Terminieren
+                                {% elif task.state == 6 %}
+                                Kick Off
+                                {% elif task.state == 7 %}
+                                Einpflegen
+                                {% elif task.state == 8 %}
+                                QS Freigabe
+                                {% elif task.state == 9 %}
+                                FA anpassen
+                                {% elif task.state == 10 %}
+                                Abgeschlossen
+                                {% endif %}
+                            </td>
                             <td>{{ task.GGNR }}</td>
                             <td>Bezeichnung aus Infra</td>
                             <td>{{ task.vorgang }}</td>

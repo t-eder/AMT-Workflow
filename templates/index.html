@@ -10,21 +10,20 @@
 {% include 'header.html' %}
 
     <div class="container">
-        <h2>Aktuelle Projekte:</h2>
+        <h2>Aktive Änderungsmappen:</h2>
 
-            <table>
-                   <tr style="font-size: 14px">
-                            <th>Anzeigen</th>
-                            <th>Typ</th>
-                            <th>Status</th>
-                            <th>Greipl-Nr.</th>
-                            <th>Bezeichnung</th>
-                            <th>Vorgang</th>
-                            <th>ÄMT-Nr.</th>
-                            <th>Ersteller</th>
-                            <th>Projektleitung</th>
-                            <th>Termin</th>
-                            <th>TAV-Start</th>
+            <table id="table1">
+                   <tr>
+                       <th>Anzeigen</th>
+                       <th>Typ</th>
+                       <th>ÄMT-Nr.</th>
+                       <th>Vorgang</th>
+                       <th>Status</th>
+                       <th>Greipl-Nr.</th>
+                       <th>Bezeichnung</th>
+                       <th>Ersteller</th>
+                       <th>Projektleitung</th>
+                       <th>Termin</th>
 
                    </tr>
 
@@ -35,15 +34,37 @@
 
                             <td><center><a href="/index/{{ task.id }}" style="background-color: transparent; padding-top:3px;"><img class="icon" src="{{ url_for('static', filename='list.png') }}" alt="Icon"></a></center></td>
                             <td>{{ task.typ }}</td>
-                            <td>{{ task.state }}, Erfasst</td>
+                            <td>{{ task.AMTNR }}</td>
+                            <td>{{ task.vorgang }}</td>
+                            <td>
+                                {{ task.state }},
+                                {% if task.state == 1 %}
+                                Änderung bewerten
+                                {% elif task.state == 2 %}
+                                Änderung ausarbeiten
+                                {% elif task.state == 3 %}
+                                Bestände erfassen
+                                {% elif task.state == 4 %}
+                                Kalkulieren
+                                {% elif task.state == 5 %}
+                                Terminieren
+                                {% elif task.state == 6 %}
+                                Kick Off
+                                {% elif task.state == 7 %}
+                                Einpflegen
+                                {% elif task.state == 8 %}
+                                QS Freigabe
+                                {% elif task.state == 9 %}
+                                FA anpassen
+                                {% elif task.state == 10 %}
+                                Abgeschlossen
+                                {% endif %}
+                            </td>
                             <td>{{ task.GGNR }}</td>
                             <td>Bezeichnung aus Infra</td>
-                            <td>{{ task.vorgang }}</td>
-                            <td>{{ task.AMTNR }}</td>
                             <td>{{ task.user }}, {{ task.creationDate }} </td>
                             <td> {{ task.leader }} </td>
                             <td> {{ task.desiredDate }} </td>
-                            <td>{{ task.startDate }}</td>
                         </tr>
 
                     {% endif %}

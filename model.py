@@ -14,7 +14,7 @@ db = SQLAlchemy(app)
 class Task(db.Model):  # Hier wird eine Datenbanktabelle definiert, die den Namen "Task" hat und von db.Model erbt
     id = db.Column(db.Integer, primary_key=True)
     state = db.Column(db.Integer, default=0)
-        #  1 = Erfasst, 2 = Bewertet, 3 = aufbereit, 4 = Bestände erfasst, 5 = kalkuliert, 6 = terminiert, 7 = Kick off,
+        # 1 = Erfasst, 2 = Bewertet, 3 = aufbereit, 4 = Bestände erfasst, 5 = kalkuliert, 6 = terminiert, 7 = Kick off,
         # 8 = AMT eingepflegt, 9 = QS Freigegeben, 10 = FAs angepasst
 
     # Daten aus Backoffice
@@ -66,9 +66,14 @@ class Task(db.Model):  # Hier wird eine Datenbanktabelle definiert, die den Name
 class AMT_PARTS(db.Model):  # Zuordnung der betroffenen Teile zu der AMTNR
     # Pflege im Prozessschritt Aufarbeitung durch TAV oder PL
     id = db.Column(db.Integer, primary_key=True)
-    AMTNR_PART = db.Column(db.Integer, db.ForeignKey('task.AMTNR'))
-    GGNR_PART = db.Column(db.Integer, nullable=True)
+    AMTNR_PART = db.Column(db.String(10), db.ForeignKey('task.AMTNR'))
+    GGNR_PART = db.Column(db.String(10), nullable=True)
     REV_PART = db.Column(db.String(10), nullable=True)  # Aktuelle Revision (aus Infra ziehen!)
     REV_new_PART = db.Column(db.String(10), nullable=True)  # Neue Revision (Aus Kundendaten entnehmen)
+    note_PART = db.Column(db.String(30), nullable=True)
+    valid_PART = db.Column(db.Boolean, default=False)  # 0 = ab Neuauftrag ; 1 = Sofortänderung
+    stock_PART = db.Column(db.String(25), nullable=True)
+    productionstock_PART = db.Column(db.String(25), nullable=True)
+    orderstock_PART = db.Column(db.String(25), nullable=True)
 
     task = db.relationship('Task', backref=db.backref('additional_data', uselist=False, lazy=True))

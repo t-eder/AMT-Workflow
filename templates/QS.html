@@ -12,43 +12,7 @@
     <div class="container">
         <h2>Offene Aufgaben Qualitätssicherung:</h2>
 
-            <table>
-                   <tr style="font-size: 14px">
-                            <th>Anzeigen</th>
-                            <th>Typ</th>
-                            <th>Status</th>
-                            <th>Greipl-Nr.</th>
-                            <th>Bezeichnung</th>
-                            <th>Vorgang</th>
-                            <th>ÄMT-Nr.</th>
-                            <th>Ersteller</th>
-                            <th>Projektleitung</th>
-                            <th>Termin</th>
-                            <th>TAV-Start</th>
-
-                   </tr>
-
-                {% for task in tasks %}
-                    {% if not task.completed %}
-
-                        <tr class="task {% if task.completed %}completed{% endif %}" style="border-bottom: 1px solid; border-right: 1px solid; border-left: 1px solid;" >
-
-                            <td><center><a href="/index/{{ task.id }}" style="background-color: transparent; padding-top:3px;"><img class="icon" src="{{ url_for('static', filename='list.png') }}" alt="Icon"></a></center></td>
-                            <td>{{ task.typ }}</td>
-                            <td>{{ task.state }}, Erfasst</td>
-                            <td>{{ task.GGNR }}</td>
-                            <td>Bezeichnung aus Infra</td>
-                            <td>{{ task.vorgang }}</td>
-                            <td>{{ task.AMTNR }}</td>
-                            <td>{{ task.user }}, {{ task.creationDate }} </td>
-                            <td> {{ task.leader }} </td>
-                            <td> {{ task.desiredDate }} </td>
-                            <td>{{ task.startDate }}</td>
-                        </tr>
-
-                    {% endif %}
-                {% endfor %}
-            </table>
+            <p> In Arbeit...</p>
 
         <p style="font-size:8px; float: right; color: lightgrey">Tobias Eder 2023</p>
     </div>
