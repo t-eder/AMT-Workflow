@@ -10,6 +10,11 @@ def index(): #ruft alle Aufgaben aus der Datenbank ab und rendert dann ein HTML-
     tasks = Task.query.all()
     return render_template('index.html', tasks=tasks)
 
+@app.route('/help')
+def help(): #ruft alle Aufgaben aus der Datenbank ab und rendert dann ein HTML-Template, um die Aufgaben auf der Webseite anzuzeigen.
+    task = Task.query.get(1)
+    return render_template('help.html', task=task)
+
 @app.route('/PM')
 def PM(): #ruft alle Aufgaben aus der Datenbank ab und rendert dann ein HTML-Template, um die Aufgaben auf der Webseite anzuzeigen.
     tasks = Task.query.all()
@@ -22,6 +27,14 @@ def categorize(id):
     task = Task.query.filter_by(id=desired_id).first() # Führen Sie eine Abfrage aus, um die Aufgabe mit der gewünschten ID zu finden
     amt_parts = AMT_PARTS.query.all()
     return render_template('categorize.html', task=task, amt_parts=amt_parts)
+
+@app.route('/calculate/<int:id>')
+def calculate(id):
+    task = Task.query.get(id)
+    desired_id = id
+    task = Task.query.filter_by(id=desired_id).first() # Führen Sie eine Abfrage aus, um die Aufgabe mit der gewünschten ID zu finden
+    amt_parts = AMT_PARTS.query.all()
+    return render_template('calculate.html', task=task, amt_parts=amt_parts)
 
 @app.route('/process/<int:id>')
 def process(id):
