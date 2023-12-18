@@ -1,11 +1,17 @@
 # Datenhaltung
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Databank.db'
 app.config['TEMPLATES_AUTO_RELOAD'] = True
+app.config['SECRET_KEY'] = 'SECRETKEY_GREIPL'
 db = SQLAlchemy(app)
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = "login"
 
 # Entwurf einer Datenbank
 # 1. Entity Relationship Model ERM
@@ -58,9 +64,8 @@ class Task(db.Model):  # Hier wird eine Datenbanktabelle definiert, die den Name
     l1_worker = db.Column(db.String(10), nullable=True)
     kt = db.Column(db.Integer, default=0)
     kt_worker = db.Column(db.String(10), nullable=True)
-    desiredDate = db.Column(db.String(15), nullable=False)
-    startDate = db.Column(db.String(15), nullable=False)
-
+    desiredDate = db.Column(db.String(15), nullable=True)
+    startDate = db.Column(db.String(15), nullable=True)
     completed = db.Column(db.Boolean, default=False)
 
 class AMT_PARTS(db.Model):  # Zuordnung der betroffenen Teile zu der AMTNR
@@ -77,3 +82,13 @@ class AMT_PARTS(db.Model):  # Zuordnung der betroffenen Teile zu der AMTNR
     orderstock_PART = db.Column(db.String(25), nullable=True)
 
     task = db.relationship('Task', backref=db.backref('additional_data', uselist=False, lazy=True))
+
+class user(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    usermail = db.Column(db.String(50), nullable=False, unique=True)
+    username =db.Column(db.String(20), nullable=False)
+    password = db.Column(db.String(80), nullable=False)
+    role = db.Column(db.String(5), nullable=True)
+    # Nuterrollen:
+    # BO = Backoffice; PM = Projektmanagement; PPS = Produktionsplanung und Steuerung;
+    # TAV = Arbeitsvorbereitung; QS = Qualitätssicherung; ADMIN = Alles

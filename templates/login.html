@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Anmelden</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+
+</head>
+<body>
+
+{% include 'header.html' %}
+
+    <div class="container">
+        <form action="/login/get" method="POST" class="add-task" style="width: 50%" autocomplete="off">
+            <h2>Anmelden:</h2>
+            <label>E-Mail:</label><p></p>
+            <input type="text" style="width:250px;" name="usermail" placeholder="E-Mail" required>
+            <p></p>
+            <label>Passwort:</label><p></p>
+            <input type="password" name="password" placeholder="Passwort" required>
+            <div style="border: 0px; margin:10px"><button type="submit">Anmelden</button></div>
+        </form>
+
+        <p style="font-size:8px; float: right; color: lightgrey">Tobias Eder 2023</p>
+    </div>
+
+</body>
+</html>

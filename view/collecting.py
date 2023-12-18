@@ -2,7 +2,56 @@ from flask import render_template
 from flask import request
 from flask import redirect
 import datetime as dt
-from model import app, db, Task, AMT_PARTS
+from model import app, db, Task, AMT_PARTS, user, login_manager
+from flask_bcrypt import Bcrypt
+from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
+
+bcrypt = Bcrypt(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return user.query.get(int(user_id))
+@app.route('/login/get', methods=['POST'])
+def getlogin():
+    usermail = request.form.get('usermail')
+    password = request.form.get('password')
+
+    user_obj = user.query.filter_by(usermail=usermail).first()
+
+    if user_obj and bcrypt.check_password_hash(user_obj.password, password):
+        # Der Benutzer und das Passwort stimmen überein
+        print("Benutzer und Passwort richtig!")
+        print(user_obj.usermail)
+        login_user(user_obj)
+        return redirect('/')
+    else:
+        # Benutzer oder Passwort sind falsch
+        print("Benutzer oder Passwort falsch!")
+        return redirect('/login')
+
+@app.route('/logout/get', methods=['GET', 'POST'])
+@login_required
+def getlogout():
+    logout_user()
+    return redirect('/login')
+@app.route('/signup/get', methods=['POST'])
+def getsignup():
+    usermail = request.form.get('usermail')
+    username = usermail[:usermail.find("@")]
+    password = request.form.get('password')
+    hashed_password = bcrypt.generate_password_hash(password)
+    new_user = user(usermail=usermail, username=username, password=hashed_password)
+    db.session.add(new_user)
+    db.session.commit()
+    return redirect('/')
+
+@app.route('/user/edit/<int:id>',methods=['POST', 'GET'])
+def user_edit(id):
+    # amt_parts = AMT_PARTS.query.get(PARTid)
+    User = user.query.get(id)
+    User.role = request.form.get('role')
+    db.session.commit()
+    return redirect('/user')
 
 @app.route('/add', methods=['POST'])
 def add_task():

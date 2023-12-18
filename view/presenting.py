@@ -2,13 +2,35 @@ from flask import render_template
 from flask import request
 from flask import redirect
 import datetime as dt
-from model import app, db, Task, AMT_PARTS
+from model import app, db, Task, AMT_PARTS, login_manager, user
+from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 
+@login_manager.user_loader
+def load_user(user_id):
+    print(user_id)
+    return user.query.get(int(user_id))
 
 @app.route('/')
 def index(): #ruft alle Aufgaben aus der Datenbank ab und rendert dann ein HTML-Template, um die Aufgaben auf der Webseite anzuzeigen.
+    print(current_user)
     tasks = Task.query.all()
-    return render_template('index.html', tasks=tasks)
+    User = user.query.all()
+    return render_template('index.html', tasks=tasks, User=User)
+
+@app.route('/signup')
+def signup(): #ruft alle Aufgaben aus der Datenbank ab und rendert dann ein HTML-Template, um die Aufgaben auf der Webseite anzuzeigen.
+    tasks = Task.query.all()
+    return render_template('signup.html', tasks=tasks)
+
+@app.route('/login')
+def login(): #ruft alle Aufgaben aus der Datenbank ab und rendert dann ein HTML-Template, um die Aufgaben auf der Webseite anzuzeigen.
+    tasks = Task.query.all()
+    print(current_user)
+    return render_template('login.html', tasks=tasks)
+@app.route('/user')
+def users():
+    User = user.query.all()
+    return render_template('user.html', User=User)
 
 @app.route('/help')
 def help(): #ruft alle Aufgaben aus der Datenbank ab und rendert dann ein HTML-Template, um die Aufgaben auf der Webseite anzuzeigen.
@@ -16,10 +38,13 @@ def help(): #ruft alle Aufgaben aus der Datenbank ab und rendert dann ein HTML-T
     return render_template('help.html', task=task)
 
 @app.route('/PM')
+@login_required
 def PM(): #ruft alle Aufgaben aus der Datenbank ab und rendert dann ein HTML-Template, um die Aufgaben auf der Webseite anzuzeigen.
+    if not (current_user.role == "PM" or current_user.role == "ADMIN"):
+        return render_template('nopermission.html')
+
     tasks = Task.query.all()
     return render_template('PM.html', tasks=tasks)
-
 @app.route('/categorize/<int:id>')
 def categorize(id):
     task = Task.query.get(id)
@@ -68,7 +93,6 @@ def stockrecord(id):
     amt_parts = AMT_PARTS.query.all()
     return render_template('stockrecord.html', task=task, amt_parts=amt_parts)
 
-
 @app.route('/AddPart/<int:id>')
 def Add_Part(id):
     task = Task.query.get(id)
@@ -77,12 +101,17 @@ def Add_Part(id):
     return render_template('Add_Part.html', task=task)
 
 @app.route('/PPS')
+@login_required
 def PPS(): #ruft alle Aufgaben aus der Datenbank ab und rendert dann ein HTML-Template, um die Aufgaben auf der Webseite anzuzeigen.
+    if not (current_user.role == "PPS" or current_user.role == "ADMIN"):
+        return render_template('nopermission.html')
     tasks = Task.query.all()
     return render_template('PPS.html', tasks=tasks)
-
 @app.route('/QS')
+@login_required
 def QS(): #ruft alle Aufgaben aus der Datenbank ab und rendert dann ein HTML-Template, um die Aufgaben auf der Webseite anzuzeigen.
+    if not (current_user.role == "QS" or current_user.role == "ADMIN"):
+        return render_template('nopermission.html')
     tasks = Task.query.all()
     return render_template('QS.html', tasks=tasks)
 
@@ -92,7 +121,10 @@ def done():
     return render_template('done.html', tasks=tasks)
 
 @app.route('/add_mask')
+@login_required
 def add_mask():
+    if not (current_user.role == "BO" or current_user.role == "ADMIN"):
+        return render_template('nopermission.html')
     tasks = Task.query.all()
     return render_template('add_mask.html', tasks=tasks)
 
@@ -104,7 +136,10 @@ def edit_task(id):
     return render_template('edit_task.html', task=task)
 
 @app.route('/tav')
+@login_required
 def tav(): #ruft alle Aufgaben aus der Datenbank ab und rendert dann ein HTML-Template, um die Aufgaben auf der Webseite anzuzeigen.
+    if not (current_user.role == "TAV" or current_user.role == "ADMIN"):
+        return render_template('nopermission.html')
     tasks = Task.query.all()
     return render_template('TAV.html', tasks=tasks)
 

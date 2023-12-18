@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Benutzer</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+
+</head>
+<body>
+
+{% include 'header.html' %}
+
+    <div class="container">
+        <h2>Nuterrollen:</h2>
+
+            <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>E-Mail</th>
+                        <th>Rolle</th>
+                        <th></th>
+                    </tr>
+                {% for User in User %}
+                        <tr style="border-bottom: 1px solid; border-right: 1px solid; border-left: 1px solid;" >
+                            <form  action="/user/edit/{{ User.id }}" method="POST" class="add-task" style="width: 80%">
+                                <td>{{ User.username }}</td>
+                                <td>{{ User.usermail }}</td>
+                                <td>
+                                    <input id="table_input" type="text" name="role" placeholder="Rolle" style="width: 80px;" value="{{User.role}}">
+<!--                                <input type="radio" id="BO" name="role" value="BO">
+                                    <label for="BO">BO</label>
+                                    <input type="radio" id="PM" name="role" value="PM">
+                                    <label for="PM">PM</label>
+                                    <input type="radio" id="PPS" name="role" value="PPS">
+                                    <label for="PPS">PPS</label>
+                                    <input type="radio" id="TAV" name="role" value="TAV">
+                                    <label for="TAV">TAV</label>
+                                    <input type="radio" id="QS" name="role" value="QS">
+                                    <label for="QS">QS</label>
+                                    <input type="radio" id="ADMIN" name="role" value="ADMIN">
+                                    <label for="ADMIN">ADMIN</label>-->
+                                </td>
+                                <td><div style="border: 0px; margin:0px"><button type="submit">Speichern</button></div></td>
+                            </form>
+                        </tr>
+                {% endfor %}
+            </table>
+            <p>BO = Backoffice<br>
+            PM = Projektmanagement<br>
+            PPS = Produktionsplanung und Steuerung<br>
+            TAV = Arbeitsvorbereitung<br>
+            QS = Qualitätssicherung<br>
+            ADMIN = Alles</p>
+        <p style="font-size:8px; float: right; color: lightgrey">Tobias Eder 2023</p>
+    </div>
+
+</body>
+</html>

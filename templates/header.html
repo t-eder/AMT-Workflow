@@ -9,5 +9,20 @@
                 <a href="/tav" id="{% if request.path == '/tav' %}active-link{% endif %}">TAV</a>
                 <a href="/QS" id="{% if request.path == '/QS' %}active-link{% endif %}">QS</a>
                 <a href="/help" style="background-color: transparent;"><img class="icon" src="{{ url_for('static', filename='help.png') }}" alt="Icon" height="20px" style="filter: invert(100%);"></a>
+                <div style="display:block; float: right;">
+                        {%if current_user.is_authenticated %}
+                        <a id="active-link">
+                                <!--<img class="icon" src="{{ url_for('static', filename='user.png') }}" alt="Icon" height="20px" style="filter: invert(100%);">-->
+                                {{ current_user.username }}
+                        </a>
+                        <a href="/logout/get">Logout</a>
+                        {% else %}
+                        <a href="/login">Login</a>
+                        <a href="/signup">Registrieren</a>
+                        {% endif %}
+                </div>
+
+
         </div>
+
 </div>

@@ -182,6 +182,15 @@
             width: 100px;
         }
 
+        input[type="password"] {
+            margin: 10px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            width: 100px;
+        }
+
         #table_input {
         margin: 0px;
         }
@@ -304,7 +313,7 @@
             border-radius: 50px;
             background-color: lightgrey;
             border: 4px solid white;
-            outline: 1px solid black;
+            outline: 0px solid black;
             margin:0 auto;
          }
 
@@ -314,7 +323,7 @@
             border-radius: 50px;
             background-color: #0082da;
             border: 4px solid white;
-            outline: 1px solid black;
+            outline: 0px solid black;
             margin:0 auto;
          }
 
