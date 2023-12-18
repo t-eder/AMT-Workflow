@@ -90,9 +90,7 @@
                 <input type="date" id="desiredDate" name="desiredDate" min="2023-01-01" required/>
                 <p></p>
                 <div>
-                    <h3>Notiz:</h3>
-                    <textarea name="note" placeholder="Bemerkung" cols="100%" rows="10">{{ task.note }}</textarea>
-                    <p></p>
+                    {% include 'comment.html' %}
                     <button type="submit">Terminieren</button>
                 </div>
 

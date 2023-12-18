@@ -73,11 +73,7 @@
                     <p></p>
                 </div>
 
-
-                <div>
-                    <h3>Notiz:</h3>
-                    <textarea name="note" placeholder="Bemerkung" cols="100%" rows="10">{{ task.note }}</textarea>
-                </div>
+                {% include 'comment.html' %}
 
                 <div style="border: 0px; margin:10px"><button type="submit">Abschließen</button></div>
             </div>

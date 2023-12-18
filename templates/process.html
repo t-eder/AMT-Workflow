@@ -18,10 +18,10 @@
 
     <div class="container">
 
-
-        <form  action="/GETAddPart/{{ task.id }}" method="POST" class="add-task" style="width: 80%">
-                    <p style="background-color: #0b2945; color: white; padding: 10px; margin: 0px; width: 80%">Änderungsmitteilung aufbereiten:</p>
-                    <div>
+        <div>
+        <form  action="/GETAddPart/{{ task.id }}" method="POST" style="width: 80%">
+                    <p style="background-color: #0b2945; color: white; padding: 10px; margin: 0px; width: 90%">Änderungsmitteilung aufbereiten:</p>
+                    <div class="inputbox">
                         <h3>Grunddaten:</h3>
                         <table id="table1">
                                <tr>
@@ -44,7 +44,7 @@
                         </table>
                     </div>
 
-            <div>
+                    <div class="inputbox">
                      <h3>Betroffene Teile aus {{ task.AMTNR }}:</h3>
                      <table id="table1">
                            <tr>
@@ -109,8 +109,8 @@
 
                         </div>
             </form>
-            <form action="/process/add/{{ task.id }}" method="POST" class="add-task" style="width: 80%">
-                <div>
+            <form action="/process/add/{{ task.id }}" method="POST" style="width: 80%">
+<!--                <div>
                     <h3>Betroffene Bereiche:</h3>
                     <input type="checkbox" id="m1" name="m1" />
                     <label for="m1">M1</label>
@@ -128,17 +128,16 @@
                     <label for="l1">L1/L2</label>
                     <input type="checkbox" id="kt" name="kt" />
                     <label for="kt">KT</label>
-                </div>
-                <div>
-                    <h3>Notiz:</h3>
-                    <textarea name="note" placeholder="Bemerkung" cols="100%" rows="10">{{ task.note }}</textarea>
-                    <p></p>
+                </div>-->
+
+                    {% include 'comment.html' %}
+
                     <button type="submit">Abschließen</button>
-                </div>
 
             </form>
 
         </div>
+    </div>
 
 </body>
 </html>

@@ -56,8 +56,13 @@ def user_edit(id):
 @app.route('/add', methods=['POST'])
 def add_task():
     vorgang = request.form.get('vorgang')
-    user = request.form.get('user')
+    user = current_user.username
+
     note = request.form.get('note')
+    date = dt.datetime.now()
+    date = date.strftime("%d.%m.%y - %H:%M")
+    if note:
+        comment = note + ";" + current_user.username + ";" + date + ";"
     leader = request.form.get('leader')
     AMTNR = request.form.get('AMTNR')
     GGNR = request.form.get('GGNR')
@@ -115,6 +120,7 @@ def add_task():
         vorgang=vorgang,
         user=user,
         note=note,
+        comment=comment,
         leader=leader,
         typ=typ,
         kat=kat,
@@ -180,8 +186,11 @@ def edit(id):
 def categorize_add(id):
     task = Task.query.get(id)  # Holen Sie sich den vorhandenen Eintrag aus der Datenbank basierend auf der übergebenen ID
     if task:
-        task.note = request.form.get('note')  # extrahiert den Wert, der im HTML-Formular mit dem Namen 'Vorgang' eingegeben wurde
-
+        date = dt.datetime.now()
+        date = date.strftime("%d.%m.%y - %H:%M")
+        if request.form.get('note'):
+            task.note = request.form.get('note')
+            task.comment = task.comment + task.note + ";" + current_user.username + ";" + date + ";"
         change_kat = request.form.getlist('change_kat')
 
         if "A" in change_kat:
@@ -201,7 +210,11 @@ def categorize_add(id):
 def calculate_add(id):
     task = Task.query.get(id)  # Holen Sie sich den vorhandenen Eintrag aus der Datenbank basierend auf der übergebenen ID
     if task:
-        task.note = request.form.get('note')  # extrahiert den Wert, der im HTML-Formular mit dem Namen 'Vorgang' eingegeben wurde
+        date = dt.datetime.now()
+        date = date.strftime("%d.%m.%y - %H:%M")
+        if request.form.get('note'):
+            task.note = request.form.get('note')
+            task.comment = task.comment + task.note + ";" + current_user.username + ";" + date + ";"
 
 
         task.state = 5
@@ -213,7 +226,11 @@ def calculate_add(id):
 def release_add(id):
     task = Task.query.get(id)  # Holen Sie sich den vorhandenen Eintrag aus der Datenbank basierend auf der übergebenen ID
     if task:
-        task.note = request.form.get('note')  # extrahiert den Wert, der im HTML-Formular mit dem Namen 'Vorgang' eingegeben wurde
+        date = dt.datetime.now()
+        date = date.strftime("%d.%m.%y - %H:%M")
+        if request.form.get('note'):
+            task.note = request.form.get('note')
+            task.comment = task.comment + task.note + ";" + current_user.username + ";" + date + ";"
 
         task.state = 6
         db.session.commit()  # Bestätigt die Änderung
@@ -248,7 +265,11 @@ def process_add(id):
             kt = request.form.getlist('kt')
             task.kt = "".join(kt)
 
-            task.note = request.form.get('note')  # extrahiert den Wert, der im HTML-Formular mit dem Namen 'Vorgang' eingegeben wurde
+            date = dt.datetime.now()
+            date = date.strftime("%d.%m.%y - %H:%M")
+            if request.form.get('note'):
+                task.note = request.form.get('note')
+                task.comment = task.comment + task.note + ";" + current_user.username + ";" + date + ";"
 
             task.state = 3
             db.session.commit()  # Bestätigt die Änderung
@@ -263,7 +284,12 @@ def process_add(id):
 def date_add(id):
         task = Task.query.get(id)  # Holen Sie sich den vorhandenen Eintrag aus der Datenbank basierend auf der übergebenen ID
         if task:
-            task.note = request.form.get('note')  # extrahiert den Wert, der im HTML-Formular mit dem Namen 'Vorgang' eingegeben wurde
+            if task:
+                date = dt.datetime.now()
+                date = date.strftime("%d.%m.%y - %H:%M")
+                if request.form.get('note'):
+                    task.note = request.form.get('note')
+                    task.comment = task.comment + task.note + ";" + current_user.username + ";" + date + ";"
             desiredDate = request.form.get('desiredDate')
             desiredDateObject = dt.datetime.strptime(desiredDate, "%Y-%m-%d").date()
             task.desiredDate = desiredDateObject.strftime("%d.%m.%y")
@@ -326,7 +352,11 @@ def AddStock(id,PARTid):
 @app.route('/stockrecord/add/<int:id>', methods=['POST', 'GET'])
 def stockrecord_add(id):
     task = Task.query.get(id)
-    task.note = request.form.get('note')  # extrahiert den Wert, der im HTML-Formular mit dem Namen 'Vorgang' eingegeben wurde
+    date = dt.datetime.now()
+    date = date.strftime("%d.%m.%y - %H:%M")
+    if request.form.get('note'):
+        task.note = request.form.get('note')
+        task.comment = task.comment + task.note + ";" + current_user.username + ";" + date + ";"
     task.state = 4
     db.session.commit()  # Bestätigt die Änderung
 

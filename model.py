@@ -66,6 +66,7 @@ class Task(db.Model):  # Hier wird eine Datenbanktabelle definiert, die den Name
     kt_worker = db.Column(db.String(10), nullable=True)
     desiredDate = db.Column(db.String(15), nullable=True)
     startDate = db.Column(db.String(15), nullable=True)
+    comment = db.Column(db.String(100), nullable=True)
     completed = db.Column(db.Boolean, default=False)
 
 class AMT_PARTS(db.Model):  # Zuordnung der betroffenen Teile zu der AMTNR

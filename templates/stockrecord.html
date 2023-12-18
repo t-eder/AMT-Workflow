@@ -104,11 +104,9 @@
                             {% endfor %}
                      </table>
             </div>
-            <form action="/stockrecord/add/{{ task.id }}" method="POST" class="add-task" style="width: 80%">
+            <form action="/stockrecord/add/{{ task.id }}" method="POST" style="width: 80%">
                 <div>
-                    <h3>Notiz:</h3>
-                    <textarea name="note" placeholder="Bemerkung" cols="100%" rows="10">{{ task.note }}</textarea>
-                    <p></p>
+                    {% include 'comment.html' %}
                     <button type="submit">Abschließen</button>
                 </div>
 
