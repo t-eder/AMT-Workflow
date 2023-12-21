@@ -30,7 +30,7 @@
                 {% for task in tasks %}
                     {% if not task.completed %}
 
-                        <tr class="task {% if task.completed %}completed{% endif %}" style="border-bottom: 1px solid; border-right: 1px solid; border-left: 1px solid;" >
+                        <tr class="task {% if task.completed %}completed{% endif %}">
 
                             <td><center><a href="/index/{{ task.id }}" style="background-color: transparent; padding-top:3px;"><img class="icon" src="{{ url_for('static', filename='list.png') }}" alt="Icon"></a></center></td>
                             <td>{{ task.typ }}</td>

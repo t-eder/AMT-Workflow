@@ -12,8 +12,8 @@
     <div class="container">
         <h2>Offene Aufgaben Projektmanagement:</h2>
 
-            <table>
-                   <tr style="font-size: 14px">
+            <table id="table1">
+                   <tr>
                             <th>Bearbeiten</th>
                             <th>Typ</th>
                             <th>Status</th>
@@ -30,7 +30,7 @@
                 {% for task in tasks %}
                     {% if task.state == 3 or task.state ==  6 %}
 
-                        <tr class="task {% if task.completed %}completed{% endif %}" style="border-bottom: 1px solid; border-right: 1px solid; border-left: 1px solid;" >
+                        <tr>
 
                             <td><center><a href="{% if task.state == 3 %}/stockrecord/{{ task.id }}{% elif task.state == 6 %}/date/{{ task.id }}{% endif %}" style="background-color: transparent; padding-top:3px;"><img class="icon" src="{{ url_for('static', filename='edit.png') }}" alt="Icon"></a></center></td>
                             <td>{{ task.typ }}</td>
