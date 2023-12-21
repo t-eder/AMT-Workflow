@@ -1,6 +1,6 @@
 from flask import render_template
 from flask import request
-from flask import redirect
+from flask import redirect, flash
 import datetime as dt
 from model import app, db, Task, AMT_PARTS, login_manager, user
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
@@ -41,8 +41,8 @@ def help(): #ruft alle Aufgaben aus der Datenbank ab und rendert dann ein HTML-T
 @login_required
 def PM(): #ruft alle Aufgaben aus der Datenbank ab und rendert dann ein HTML-Template, um die Aufgaben auf der Webseite anzuzeigen.
     if not (current_user.role == "PM" or current_user.role == "ADMIN"):
+        flash("Keine Berechtigung.", "info")
         return render_template('nopermission.html')
-
     tasks = Task.query.all()
     return render_template('PM.html', tasks=tasks)
 @app.route('/categorize/<int:id>')
@@ -104,6 +104,7 @@ def Add_Part(id):
 @login_required
 def PPS(): #ruft alle Aufgaben aus der Datenbank ab und rendert dann ein HTML-Template, um die Aufgaben auf der Webseite anzuzeigen.
     if not (current_user.role == "PPS" or current_user.role == "ADMIN"):
+        flash("Keine Berechtigung.", "info")
         return render_template('nopermission.html')
     tasks = Task.query.all()
     return render_template('PPS.html', tasks=tasks)
@@ -111,6 +112,7 @@ def PPS(): #ruft alle Aufgaben aus der Datenbank ab und rendert dann ein HTML-Te
 @login_required
 def QS(): #ruft alle Aufgaben aus der Datenbank ab und rendert dann ein HTML-Template, um die Aufgaben auf der Webseite anzuzeigen.
     if not (current_user.role == "QS" or current_user.role == "ADMIN"):
+        flash("Keine Berechtigung.", "info")
         return render_template('nopermission.html')
     tasks = Task.query.all()
     return render_template('QS.html', tasks=tasks)
@@ -124,6 +126,7 @@ def done():
 @login_required
 def add_mask():
     if not (current_user.role == "BO" or current_user.role == "ADMIN"):
+        flash("Keine Berechtigung.", "info")
         return render_template('nopermission.html')
     tasks = Task.query.all()
     return render_template('add_mask.html', tasks=tasks)
@@ -139,6 +142,7 @@ def edit_task(id):
 @login_required
 def tav(): #ruft alle Aufgaben aus der Datenbank ab und rendert dann ein HTML-Template, um die Aufgaben auf der Webseite anzuzeigen.
     if not (current_user.role == "TAV" or current_user.role == "ADMIN"):
+        flash("Keine Berechtigung.", "info")
         return render_template('nopermission.html')
     tasks = Task.query.all()
     return render_template('TAV.html', tasks=tasks)

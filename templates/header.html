@@ -21,8 +21,18 @@
                         <a href="/signup">Registrieren</a>
                         {% endif %}
                 </div>
-
-
         </div>
-
 </div>
+
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+                {% for msg in messages %}
+                        <div style="float: bottom; height: 35px; width: 1400px; padding-left: 20px; padding-right: 20px;
+                                margin: 0 auto; margin-top: 1px; background-color: #0082da; display: flex;align-items: center;
+                                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
+                                <span>{{ msg }}</span>
+                        </div>
+                {% endfor %}
+        {% endif %}
+{% endwith %}
+

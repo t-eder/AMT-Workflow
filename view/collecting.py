@@ -1,6 +1,6 @@
 from flask import render_template
 from flask import request
-from flask import redirect
+from flask import redirect,flash
 import datetime as dt
 from model import app, db, Task, AMT_PARTS, user, login_manager
 from flask_bcrypt import Bcrypt
@@ -23,6 +23,7 @@ def getlogin():
         print("Benutzer und Passwort richtig!")
         print(user_obj.usermail)
         login_user(user_obj)
+        flash("Erfolgreich angemeldet.", "info")
         return redirect('/')
     else:
         # Benutzer oder Passwort sind falsch
@@ -33,6 +34,7 @@ def getlogin():
 @login_required
 def getlogout():
     logout_user()
+    flash("Erfolgreich abgemeldet.", "info")
     return redirect('/login')
 @app.route('/signup/get', methods=['POST'])
 def getsignup():
@@ -43,6 +45,7 @@ def getsignup():
     new_user = user(usermail=usermail, username=username, password=hashed_password)
     db.session.add(new_user)
     db.session.commit()
+    flash("Erfolgreich registriert, bitte anmelden.", "info")
     return redirect('/')
 
 @app.route('/user/edit/<int:id>',methods=['POST', 'GET'])
