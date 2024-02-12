@@ -1,0 +1,432 @@
+<h3>Übersicht:</h3>
+{% if task.change_kat == true %}
+                <table id="prozesstable">
+                    <tr>
+                        <td>
+                            {% if task.state > 0 %}
+                                <div id="kreis_done">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='edit.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div id="kreis_open">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='edit.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {%endif%}
+                        </td>
+
+                        <td>&#10148</td>
+
+                        <td>
+                            {% if task.state > 1 %}
+                                <div id="kreis_done">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='file.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div id="kreis_open">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='file.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {%endif%}
+                        </td>
+
+                        <td>&#10148</td>
+
+                        <td>
+                            {% if task.state > 2 %}
+                                <div id="kreis_done">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='edit.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div id="kreis_open">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='edit.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {%endif%}
+                        </td>
+
+                        <td>&#10148</td>
+
+                        <td>
+                            {% if task.state > 3 %}
+                                <div id="kreis_done">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='package.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div id="kreis_open">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='package.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {%endif%}
+                        </td>
+
+                        <td>&#10148</td>
+
+                        <td>
+                            {% if task.state > 4 %}
+                                <div id="kreis_done">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='calculator.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div id="kreis_open">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='calculator.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {%endif%}
+                        </td>
+
+                        <td>&#10148</td>
+
+                        <td>
+                            {% if task.state > 5 %}
+                                <div id="kreis_done">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='check.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div id="kreis_open">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='check.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {%endif%}
+                        </td>
+
+                        <td>&#10148</td>
+
+                        <td>
+                            {% if task.state > 6 %}
+                                <div id="kreis_done">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='calendar.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div id="kreis_open">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='calendar.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {%endif%}
+                        </td>
+
+                        <td>&#10148</td>
+
+                        <td>
+                            {% if task.state > 7 %}
+                                <div id="kreis_done">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='meeting.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div id="kreis_open">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='meeting.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {%endif%}
+                        </td>
+
+                        <td>&#10148</td>
+
+                        <td>
+                            {% if task.state > 8 %}
+                                <div id="kreis_done">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='maintain.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div id="kreis_open">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='maintain.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {%endif%}
+                        </td>
+
+                        <td>&#10148</td>
+
+                        <td>
+                            {% if task.state > 9 %}
+                                <div id="kreis_done">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='signature.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div id="kreis_open">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='signature.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {%endif%}
+                        </td>
+
+                       <td>&#10148</td>
+
+                        <td>
+                            {% if task.state > 10 %}
+                                <div id="kreis_done">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='settings.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div id="kreis_open">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='settings.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {%endif%}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><span>Erfassen</span></td>
+                        <td></td>
+                        <td><span>Bewerten</span></td>
+                        <td></td>
+                        <td><span>Aufbereiten</span></td>
+                        <td></td>
+                        <td><span><br>Bestände</br>erfassen</span></td>
+                        <td></td>
+                        <td><span>Kalkulation</span></td>
+                        <td></td>
+                        <td><span>Freigabe</span></td>
+                        <td></td>
+                        <td><span>Terminieren</span></td>
+                        <td></td>
+                        <td><span>Kick Off</span></td>
+                        <td></td>
+                        <td><span>Einpflegen</span></td>
+                        <td></td>
+                        <td><span>QS Freigabe</span></td>
+                        <td></td>
+                        <td><span><br>Aufträge</br>anpassen</span></td>
+                    </tr>
+                </table>
+{%endif%}
+
+{% if task.change_kat == false %}
+                  <table id="prozesstable">
+                      <tr>
+                          <td>
+                              {% if task.state > 0 %}
+                              <div id="kreis_done">
+                                  <div id="kreis2">
+                                      <img src="{{ url_for('static', filename='edit.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                  </div>
+                              </div>
+                              {% else %}
+                              <div id="kreis_open">
+                                  <div id="kreis2">
+                                      <img src="{{ url_for('static', filename='edit.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                  </div>
+                              </div>
+                              {%endif%}
+                          </td>
+
+                        <td>&#10148</td>
+
+                        <td>
+                            {% if task.state > 1 %}
+                                <div id="kreis_done">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='file.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div id="kreis_open">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='file.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {%endif%}
+                        </td>
+
+                        <td>&#10148</td>
+
+                        <td>
+                            {% if task.state > 2 %}
+                                <div id="kreis_done">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='edit.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div id="kreis_open">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='edit.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {%endif%}
+                        </td>
+
+                        <td>&#10148</td>
+
+                        <td>
+                            {% if task.state > 3 %}
+                                <div id="kreis_done">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='package.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div id="kreis_open">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='package.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {%endif%}
+                        </td>
+
+                        <td>&#10148</td>
+
+                        <td>
+                            {% if task.state > 4 %}
+                                <div id="kreis_done">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='calculator.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div id="kreis_open">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='calculator.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {%endif%}
+                        </td>
+
+                        <td>&#10148</td>
+
+                        <td>
+                            {% if task.state > 5 %}
+                                <div id="kreis_done">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='check.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div id="kreis_open">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='check.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {%endif%}
+                        </td>
+
+                        <td>&#10148</td>
+
+                        <td>
+                            {% if task.state > 6 %}
+                                <div id="kreis_done">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='calendar.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div id="kreis_open">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='calendar.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {%endif%}
+                        </td>
+
+                        <td>&#10148</td>
+
+                        <td>
+                            {% if task.state > 8 %}
+                                <div id="kreis_done">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='maintain.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div id="kreis_open">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='maintain.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {%endif%}
+                        </td>
+
+                        <td>&#10148</td>
+
+                        <td>
+                            {% if task.state > 9 %}
+                                <div id="kreis_done">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='signature.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div id="kreis_open">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='signature.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {%endif%}
+                        </td>
+
+                       <td>&#10148</td>
+
+                        <td>
+                            {% if task.state > 10 %}
+                                <div id="kreis_done">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='settings.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div id="kreis_open">
+                                    <div id="kreis2">
+                                        <img src="{{ url_for('static', filename='settings.png') }}" alt="Greipl Logo" height="25" style="filter: contrast(9%);">
+                                    </div>
+                                </div>
+                            {%endif%}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><span>Erfassen</span></td>
+                        <td></td>
+                        <td><span>Bewerten</span></td>
+                        <td></td>
+                        <td><span>Aufbereiten</span></td>
+                        <td></td>
+                        <td><span><br>Bestände</br>erfassen</span></td>
+                        <td></td>
+                        <td><span>Kalkulation</span></td>
+                        <td></td>
+                        <td><span>Freigabe</span></td>
+                        <td></td>
+                        <td><span>Terminieren</span></td>
+                        <td></td>
+                        <td><span>Einpflegen</span></td>
+                        <td></td>
+                        <td><span>QS Freigabe</span></td>
+                        <td></td>
+                        <td><span><br>Aufträge</br>anpassen</span></td>
+                    </tr>
+                </table>
+{%endif%}

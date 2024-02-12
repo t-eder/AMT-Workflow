@@ -10,101 +10,57 @@
 
     {% include 'header.html' %}
 
-    <div class="container">
-        <h2>Eingabe der Daten vom Backoffice:</h2>
+    <div class="container" style="float: auto;">
+      <h2>Änderungsmappe erfassen</h2>
 
-        <p style="background-color: #0b2945; color: white; padding: 10px; margin: 0px; width: 50%">
-            Eintrag erstellen:
-        </p>
-        <form action="/add" method="POST" class="add-task" style="width: 50%">
-            <div>
-                    <h3>Typ:</h3>
-                    <fieldset>
-                        <input type="radio" id="ÄMT" name="typ" value="ÄMT">
-                        <label for="ÄMT">Änderung</label>
-                        <input type="radio" id="NT" name="typ" value="NT">
-                        <label for="NT">Neuteil</label>
-                        <input type="radio" id="AA" name="typ" value="AA">
-                        <label for="AA"> Anweisung</label>
-                    </fieldset>
-                    <p></p>
-            </div>
+        <form action="/add" method="POST" class="add-task">
+            <div style="margin-left: 730px;"><button type="submit">Speichern</button></div>
+        <div style="float: left;">
 
-            <!--<div class="AMT_content" style="display: none;">
-                <h3>Ich werde nur angezeigt, wenn ÄMT ausgewählt ist!</h3>
-            </div>-->
 
-            <script>
-                document.addEventListener("DOMContentLoaded", function() {
-                    var typRadios = document.getElementsByName("typ");
-                    var AMT_content = document.querySelectorAll(".AMT_content");
+              <table id="foldersec">
 
-                    for (var i = 0; i < typRadios.length; i++) {
-                        typRadios[i].addEventListener("change", function() {
-                            for (var j = 0; j < AMT_content.length; j++) {
-                                if (this.value === "ÄMT") {
-                                    AMT_content[j].style.display = "block";
-                                } else {
-                                    AMT_content[j].style.display = "none";
-                                }
-                            }
-                        });
-                    }
-                });
-            </script>
+                  <tr style="background-color: lightblue"><td colspan="2"><h3>ECR - Änderungsantrag</h3></td></tr>
+                          <tr><th colspan="3"><h3>1. Erfassung<h3></th></tr>
+                              <tr>
+                                  <td class="rotate" rowspan="5">Backoffice</td>
+                                  <td>Der interne oder externe Änderungsantrag wird im Backoffice im System angelegt und die Grunddaten gepflegt.</td>
+                              </tr>
+                              <tr><td id="data"><b>Greipl-Nummer: </b><input type="text" name="GGNR" placeholder="Greipl Nummer" required></td></tr>
+                              <tr>
+                                  <td><b>Typ: </b><br><br>
+                                      <div>
+                                            <fieldset>
+                                                <input type="radio" id="ÄMT" name="typ" value="ÄMT">
+                                                <label for="ÄMT">Änderung</label>
+                                                <input type="radio" id="NT" name="typ" value="NT">
+                                                <label for="NT">Neuteil</label>
+                                                <input type="radio" id="AA" name="typ" value="AA">
+                                                <label for="AA"> Anweisung</label>
+                                            </fieldset>
+                                            <p></p>
+                                    </div>
+                                  </td>
+                              </tr>
+                              <tr><td><b>Bezeichnung: </b>Bezeichnung aus Infra</td></tr>
+                              <tr><td><b>Vorgang: </b><input type="text" name="vorgang" placeholder="Vorgang" required></td></tr>
+                              <tr><td colspan="2">{{ task.user }}, {{ task.creationDate }} </td></tr>
 
-            <div>
-                <h3>Informationen zum Erzeugnis:</h3>
-                <input type="text" name="GGNR" placeholder="Greipl Nummer" required>
-                <input type="text" name="vorgang" placeholder="Vorgang" required>
-                <p></p>
-                    <fieldset>
-                        <input type="radio" id="1" name="kat" value="1">
-                        <label for="1">Kat 1</label>
-                        <input type="radio" id="2" name="kat" value="2">
-                        <label for="2">Kat 2</label>
-                        <input type="radio" id="3" name="kat" value="3">
-                        <label for="3">Kat 3</label>
 
-                        <input type="checkbox" id="EMPB" name="EMPB" />
-                        <label for="EMPB">Kunde fordert EMPB</label>
-                    </fieldset>
-            </div>
+                  <tr>{% include 'changefolder/2_bewertung.html' %}</tr>
+                  <tr>{% include 'changefolder/3_ausarbeiten.html' %}</tr>
+                  <tr>{% include 'changefolder/4_bestaende.html' %}</tr>
+                  <tr>{% include 'changefolder/5_kalkulation.html' %}</tr>
+                  <tr>{% include 'changefolder/6_freigabe.html' %}</tr>
+                  <tr style="background-color: orange"><td colspan="2"><h3>ECO - Änderungsauftrag</h3></td></tr>
+                  <tr>{% include 'changefolder/7_termin.html' %}</tr>
+                  <tr>{% include 'changefolder/8_kickoff.html' %}</tr>
+                  <tr>{% include 'changefolder/9_einpflegen.html' %}</tr>
+              </table>
 
-            <div class="AMT_content" style="display: none;">
-                <h3>Änderungsdaten:</h3>
-                <span>ÄMT-Nummer:</span>
-                <input type="text" name="AMTNR" placeholder="ÄMT-NR">
-                <p></p>
-                <span>Aktuelle Revision:</span>
-                <input type="text" name="REV" placeholder="Alte Revision">
-                <span>Neue Revision:</span>
-                <input type="text" name="REV_new" placeholder="Neue Revision">
-                <p></p>
-                <fieldset>
-                        <span>Änderung von:</span>
-                        <input type="radio" id="intern" name="change" value="0">
-                        <label for="intern">Intern</label>
-                        <input type="radio" id="extern" name="change" value="1">
-                        <label for="extern">Extern</label>
-                </fieldset>
-                <p></p>
-            </div>
-
-            <div>
-                <h3>Zuständigkeiten:</h3>
-                <input type="text" name="leader" placeholder="Projektleiter" required>
-                <p></p>
-            </div>
-
-            <div>
-                <h3>Notiz:</h3>
-                <textarea name="note" placeholder="Bemerkung" cols="50%" rows="10"></textarea>
-            </div>
-
-            <div style="border: 0px; margin:10px"><button type="submit">Anlegen</button></div>
-
-            </form>
+        </form>
+    </div>
+    <div style="clear: both;"></div>
     </div>
 </body>
 </html>

@@ -1,0 +1,43 @@
+<div class="container" style="float: auto;">
+      <h2>Änderungsmappe Nr.: {{ task.id }}</h2>
+      {% include 'prozesstable.html' %}
+
+      <div style="float: left;">
+          <table id="foldersec">
+              <tr style="background-color: lightblue"><td colspan="2"><h3>ECR - Änderungsantrag</h3></td></tr>
+              <tr>{% include 'changefolder/1_erfassung.html' %}</tr>
+              <tr>{% include 'changefolder/2_bewertung.html' %}</tr>
+              <tr>{% include 'changefolder/3_ausarbeiten.html' %}</tr>
+              <tr>{% include 'changefolder/4_bestaende.html' %}</tr>
+              <tr>{% include 'changefolder/5_kalkulation.html' %}</tr>
+              <tr>{% include 'changefolder/6_freigabe.html' %}</tr>
+              <tr style="background-color: orange"><td colspan="2"><h3>ECO - Änderungsauftrag</h3></td></tr>
+              <tr>{% include 'changefolder/7_termin.html' %}</tr>
+              <tr>{% include 'changefolder/8_kickoff.html' %}</tr>
+              <tr>{% include 'changefolder/9_einpflegen.html' %}</tr>
+          </table>
+      </div>
+
+      <div style="float: right;">
+                        <h3>Kommentare:</h3>
+                        <div style="max-height:350px; overflow-y: scroll; display: flex; flex-direction: column-reverse; border: 1px solid #ccc;">
+                           <table style="width:450px;">
+                             {% set list = task.comment.split(';') %}
+                                {%for i in list|batch(3)%}
+                                    {% if i[0] != '' %}
+                                        <tr style="width:450px; min-height: 200px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
+                                          <td style="text-align: left; vertical-align: top; height: 50px;" colspan="2">{{ i[0] }}</td>
+                                        </tr>
+                                        <tr style="background-color: lightgrey; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
+                                            <td style="font-size:14px; color:black; text-align: left;" >{{ i[2] }}</td>
+                                            <td style="font-size:14px; color:black; text-align: right;">{{ i[1] }}</td>
+                                        </tr>
+                                        <tr style="height: 15px;"></tr>
+                                    {% endif %}
+                                {% endfor %}
+                           </table>
+                        </div>
+      </div>
+        <div style="clear: both;"></div>
+
+</div>

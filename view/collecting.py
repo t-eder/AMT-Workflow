@@ -66,7 +66,6 @@ def add_task():
     date = date.strftime("%d.%m.%y - %H:%M")
     if note:
         comment = note + ";" + current_user.username + ";" + date + ";"
-    leader = request.form.get('leader')
     AMTNR = request.form.get('AMTNR')
     GGNR = request.form.get('GGNR')
     creationDate = dt.date.today()
@@ -123,8 +122,8 @@ def add_task():
         vorgang=vorgang,
         user=user,
         note=note,
-        comment=comment,
-        leader=leader,
+        comment=0,
+        leader=0,
         typ=typ,
         kat=kat,
         creationDate=creationDate,

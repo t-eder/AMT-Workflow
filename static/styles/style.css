@@ -158,12 +158,10 @@
         }
 
         .add-task {
-            background-color: #ffffff;
             border: 0px solid #e0e0e0;
             padding: 10px;
             margin-bottom: 20px;
             border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         input[type="text"] {
@@ -274,16 +272,11 @@
         }
         #table1 th {
             text-align: left;
-            padding: 2px 20px 2px;
             background-color: lightgrey;
             border: 0px;
             border-bottom: 1px black;
             color: black;
             font-weight: bold;
-        }
-
-        #table1 td {
-             padding: 2px 20px 2px;
         }
 
         #active-link {
@@ -357,3 +350,24 @@
             color: black;
          }
 
+        #foldersec table{
+            width: 80%;
+        }
+
+        #foldersec td{
+            border: 1px solid black;
+            font-size 12px;
+        }
+
+        #foldersec th{
+            border: 1px solid black;
+            font-size 12px;
+            background-color: lightgrey;
+            width: 800px;
+        }
+
+        .rotate {
+            transform: rotate(-90deg);
+            width: 80px;
+            text-align: center;
+        }

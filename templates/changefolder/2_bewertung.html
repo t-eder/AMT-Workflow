@@ -1,0 +1,21 @@
+
+          <tr>
+              <th colspan="3"><h3>2. Änderungsmappe bewerten<h3></th>
+          </tr>
+          <tr>
+              <td class="rotate" rowspan="2">Projektleitung</td>
+              <td>Einstufung der der Änderungsmappe in Kategorie A oder B.<br>
+                  <u>Änderungskategorie A:</u><br>
+                  Einfache Änderung mit nur wenig betroffenen Teilen z.B. Anpassung einer Bohrung in einem Blechteil.<br>
+                  Die Ausarbeitung der Änderungsmappe wird von der Projektleitung übernommen.<br>
+                  <u>Änderungskategorie B:</u><br>
+                  Komplexere Änderung mit mehreren betroffenen Teilen oder komplexe Einzeländerung.<br>
+                  Ausarbeitung der Änderungsmappe übernimmt die TAV.
+              </td>
+          </tr>
+          <tr>
+              <td><b>Änderungskategorie: </b>{% if task.change_kat == 0 %}A = Einfach{% else %}B = Komplex{%endif%}</td>
+          </tr>
+          <tr>
+              <td colspan="2">t.eder, 29.01.24</td>
+          </tr>

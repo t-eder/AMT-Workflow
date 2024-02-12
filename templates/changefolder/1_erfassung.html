@@ -1,0 +1,23 @@
+
+          <tr>
+              <th colspan="3"><h3>1. Erfassung<h3></th>
+          </tr>
+          <tr>
+              <td class="rotate" rowspan="5">Backoffice</td>
+              <td>Der interne oder externe Änderungsantrag wird im Backoffice im System angelegt und die Grunddaten gepflegt.</td>
+          </tr>
+          <tr>
+              <td id="data"><b>Greipl-Nummer: </b>{{ task.GGNR }}</td>
+          </tr>
+          <tr>
+              <td><b>Typ: </b>{{ task.typ }}</td>
+          </tr>
+          <tr>
+              <td><b>Bezeichnung: </b>Bezeichnung aus Infra</td>
+          </tr>
+          <tr>
+              <td><b>Vorgang: </b>{{ task.vorgang }}</td>
+          </tr>
+          <tr>
+              <td colspan="2">{{ task.user }}, {{ task.creationDate }} </td>
+          </tr>

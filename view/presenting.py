@@ -128,8 +128,8 @@ def add_mask():
     if not (current_user.role == "BO" or current_user.role == "ADMIN"):
         flash("Keine Berechtigung.", "info")
         return render_template('nopermission.html')
-    tasks = Task.query.all()
-    return render_template('add_mask.html', tasks=tasks)
+    task = Task.query.all()
+    return render_template('add_mask.html', task=task)
 
 @app.route('/task_edit/<int:id>')
 def edit_task(id):
