@@ -5,80 +5,69 @@
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
 </head>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-    var typRadios = document.getElementsByName("change_kat");
-    var AMT_content = document.querySelectorAll(".AMT_content");
-
-    for (var i = 0; i < typRadios.length; i++) {
-        typRadios[i].addEventListener("change", function() {
-        for (var j = 0; j < AMT_content.length; j++) {
-        if (this.value === "0") {
-            AMT_content[j].style.display = "block";
-        } else {
-             AMT_content[j].style.display = "none";
-        }
-        }
-        });
-        }
-    });
-</script>
-
-
 <body>
 
-        <div class="header">
-            <div style="float: left; padding-left: 50px; padding-top: 35px;"><img src="{{ url_for('static', filename='logo-weiss.svg') }}" alt="Greipl Logo" height="75"></div>
-            <div class="navbar">
-                <a href="/PM" class="active-link">Zurück</a>
-            </div>
+{% include 'header.html' %}
+<div class="container" style="float: auto;">
+    <h2>Bewertung der Änderungsmappe</h2>
+    <h2>Änderungsmappe Nr.: {{ task.id }}</h2>
+    <form action="/categorize/add/{{ task.id }}" method="POST" class="add-task">
+        <div style="float: left;">
+            <table id="foldersec">
+                <tr style="background-color: lightblue"><td colspan="2"><h3>ECR - Änderungsantrag</h3></td></tr>
+                <tr>{% include 'changefolder/1_erfassung.html' %}</tr>
+                <tr>
+                    <th colspan="3"><h3>2. Änderungsmappe bewerten<h3></th>
+                </tr>
+                <tr>
+                    <td class="rotate" rowspan="2">Projektleitung</td>
+                    <td>Einstufung der der Änderungsmappe in Kategorie A oder B.<br>
+                        <u>Änderungskategorie A:</u><br>
+                        Einfache Änderung mit nur wenig betroffenen Teilen z.B. Anpassung einer Bohrung in einem Blechteil.<br>
+                        Die Ausarbeitung der Änderungsmappe wird von der Projektleitung übernommen.<br>
+                        <u>Änderungskategorie B:</u><br>
+                        Komplexere Änderung mit mehreren betroffenen Teilen oder komplexe Einzeländerung.<br>
+                        Ausarbeitung der Änderungsmappe übernimmt die TAV.
+                        <br><br>
+                        <select name="change_kat" id="change_kat">
+                            <option value="A">A - Einfache Änderung</option>
+                            <option value="B">B- Komplexe Änderung</option>
+                        </select>
+                        <br><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Zuständiger Projektleiter: </b><br><br>
+                        <select name="leader" id="leader">
+                            {% for user in user %}
+                            {% if user.role == "PM" %}
+                            <option value="{{ user.username }}">{{ user.username }}</option>
+                            {% endif %}
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">t.eder, 29.01.24</td>
+                </tr>
+            </table>
         </div>
+        {% include 'comment.html' %}
+        <div style="margin-left: 730px;"><button type="submit">Abschließen</button></div>
 
-
-    <div class="container">
-        <p style="background-color: #0b2945; color: white; padding: 10px; margin: 0px; width: 80%">Bewertung der Änderungsmitteilung:</p>
-        <form action="/categorize/add/{{ task.id }}" method="POST" class="add-task" style="width: 80%">
-                <div style="Border: 0px; margin:0px; padding: 0px;">
-                <div>
-                    <h3>Grunddaten:</h3>
-                    <table id="table1">
-                           <tr>
-                                    <th>Typ</th>
-                                    <th>Greipl-Nr.</th>
-                                    <th>Bezeichnung</th>
-                                    <th>Vorgang</th>
-                                    <th>Ersteller</th>
-                                    <th>Projektleitung</th>
-                           </tr>
-
-                            <tr>
-                                    <td>{{ task.typ }}</td>
-                                    <td>{{ task.GGNR }}</td>
-                                    <td>Bezeichnung aus Infra</td>
-                                    <td>{{ task.vorgang }}</td>
-                                    <td>{{ task.user }}, {{ task.creationDate }} </td>
-                                    <td> {{ task.leader }} </td>
-                            </tr>
-                    </table>
-                </div>
-
-                <div>
-                    <h3>Änderungskategorie festlegen:</h3>
-                    <fieldset>
-                        <input type="radio" id="1" name="change_kat" value="A">
-                        <label for="1">Kategorie A (Einfach)</label>
-                        <input type="radio" id="2" name="change_kat" value="B">
-                        <label for="2">Kategorie B (Komplex)</label>
-                    </fieldset>
-                    <p></p>
-                </div>
-
-                {% include 'comment.html' %}
-
-                <div style="border: 0px; margin:10px"><button type="submit">Abschließen</button></div>
-            </div>
-        </form>
-    </div>
+        <table id="foldersec">
+            <tr>{% include 'changefolder/3_ausarbeiten.html' %}</tr>
+            <tr>{% include 'changefolder/4_bestaende.html' %}</tr>
+            <tr>{% include 'changefolder/5_kalkulation.html' %}</tr>
+            <tr>{% include 'changefolder/6_freigabe.html' %}</tr>
+            <tr style="background-color: orange"><td colspan="2"><h3>ECO - Änderungsauftrag</h3></td></tr>
+            <tr>{% include 'changefolder/7_termin.html' %}</tr>
+            <tr>{% include 'changefolder/8_kickoff.html' %}</tr>
+            <tr>{% include 'changefolder/9_einpflegen.html' %}</tr>
+        </table>
+    </form>
+</div>
 </body>
 </html>
 

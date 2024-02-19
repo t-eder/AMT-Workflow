@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Änderungsantrag aufbereiten</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+</head>
+
+<body>
+
+        <div class="header">
+            <div style="float: left; padding-left: 50px; padding-top: 35px;"><img src="{{ url_for('static', filename='logo-weiss.svg') }}" alt="Greipl Logo" height="75"></div>
+            <div class="navbar">
+                <a href="/PM" class="active-link">Zurück</a>
+            </div>
+        </div>
+
+
+
+    <div class="container" style="width:100%">
+
+        <div>
+        <form  action="/GETAddPart/{{ task.id }}" method="POST" style="width: 100%">
+                    <p style="background-color: #0b2945; color: white; padding: 10px; margin: 0px; width: 90%">Änderungsmitteilung aufbereiten:</p>
+                    <div class="inputbox">
+                        <h3>Grunddaten:</h3>
+                        <table id="table1">
+                               <tr>
+                                        <th>Typ</th>
+                                        <th>Greipl-Nr.</th>
+                                        <th>Bezeichnung</th>
+                                        <th>Vorgang</th>
+                                        <th>Ersteller</th>
+                                        <th>Projektleitung</th>
+                               </tr>
+
+                                <tr>
+                                        <td>{{ task.typ }}</td>
+                                        <td>{{ task.GGNR }}</td>
+                                        <td>Bezeichnung aus Infra</td>
+                                        <td>{{ task.vorgang }}</td>
+                                        <td>{{ task.user }}, {{ task.creationDate }} </td>
+                                        <td> {{ task.leader }} </td>
+                                </tr>
+                        </table>
+                    </div>
+
+                    <div class="inputbox">
+                     <h3>Betroffene Teile aus {{ task.AMTNR }}:</h3>
+                     <table id="table1">
+                           <tr>
+                                    <th>Greipl-Nr.</th>
+                                    <th>Bezeichnung</th>
+                                    <th>Aktuelle Rev</th>
+                                    <th>Neue Rev</th>
+                                    <th>Gültigkeit</th>
+                                    <th>Beschreibung</th>
+                                    <th></th>
+                           </tr>
+                            {% for amt_part in amt_parts %}
+
+                                {% if amt_part.AMTNR_PART == task.AMTNR %}
+                                    <tr>
+                                        <td>{{ amt_part.GGNR_PART }}</td>
+                                        <td>Bezeichnung aus Infra</td>
+                                        <td>{{ amt_part.REV_PART }}</td>
+                                        <td>{{ amt_part.REV_new_PART }}</td>
+                                        <td>
+                                            {% if amt_part.valid_PART == False %}
+                                                Neuauftrag
+                                            {% elif amt_part.valid_PART == True %}
+                                                Sofort
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ amt_part.note_PART }}</td>
+                                        <td><center><a href="/process/part/delete/{{ amt_part.id }}/{{task.id}}" style="background-color: transparent; padding-top:3px;"><img class="icon" src="{{ url_for('static', filename='cancel.png') }}" alt="Icon"></a></center></td>
+                                    </tr>
+                                 {% endif %}
+                            {% endfor %}
+
+                     </table>
+                        <p></p>
+                                         <table id="table1">
+                                           <tr>
+                                               <th>Greipl-Nr.</th>
+                                               <th>Bezeichnung</th>
+                                               <th>Rev</th>
+                                               <th>Neue Rev</th>
+                                               <th>Gültigkeit</th>
+                                               <th>Beschreibung</th>
+                                               <th></th>
+                                           </tr>
+
+                                            <tr>
+                                                <td><input id="table_input" type="text" name="GGNR_PART" placeholder="Greipl Nummer" required></td>
+                                                <td>Bezeichnung</td>
+                                                <td>Rev</td>
+                                                <td><input id="table_input" type="text" name="REV_PART" placeholder="REV" style="width: 60px;" required></td>
+                                                <td>
+                                                    <input type="radio" id="Neuauftrag" name="valid_PART" value="0">
+                                                    <label for="Neuauftrag">Neuauftrag</label>
+                                                    <input type="radio" id="sofort" name="valid_PART" value="1">
+                                                    <label for="sofort">Sofort</label>
+                                                </td>
+                                                <td><input id="table_input" type="text" name="note_PART" placeholder="Änderungsbeschreibung" style="width: 350px;" required></td>
+                                                <td><button id="table_input" type="submit">Hinzufügen</button></td>
+                                            </tr>
+                                         </table>
+
+
+                        </div>
+            </form>
+            <form action="/process/add/{{ task.id }}" method="POST" style="width: 80%">
+<!--                <div>
+                    <h3>Betroffene Bereiche:</h3>
+                    <input type="checkbox" id="m1" name="m1" />
+                    <label for="m1">M1</label>
+                    <input type="checkbox" id="m2" name="m2" />
+                    <label for="m2">M2</label>
+                    <input type="checkbox" id="m3" name="m3" />
+                    <label for="m3">M3</label>
+                    <input type="checkbox" id="m4" name="m4" />
+                    <label for="m4">M4</label>
+                    <input type="checkbox" id="pt" name="pt" />
+                    <label for="pt">PT</label>
+                    <input type="checkbox" id="e1" name="e1" />
+                    <label for="e1">E1</label>
+                    <input type="checkbox" id="l1" name="l1" />
+                    <label for="l1">L1/L2</label>
+                    <input type="checkbox" id="kt" name="kt" />
+                    <label for="kt">KT</label>
+                </div>-->
+
+                    {% include 'comment.html' %}
+
+                    <button type="submit">Abschließen</button>
+
+            </form>
+
+        </div>
+    </div>
+
+</body>
+</html>
+
+

@@ -66,6 +66,9 @@ def add_task():
     date = date.strftime("%d.%m.%y - %H:%M")
     if note:
         comment = note + ";" + current_user.username + ";" + date + ";"
+    else:
+        comment = "Eintrag angelegt." + ";" + current_user.username + ";" + date + ";"
+
     AMTNR = request.form.get('AMTNR')
     GGNR = request.form.get('GGNR')
     creationDate = dt.date.today()
@@ -76,6 +79,10 @@ def add_task():
     EMPB = 0
     if request.form.getlist('EMPB'):
         EMPB = 1
+
+    change = 0
+    if request.form.getlist('change'):
+        change = 1
 
     typ = request.form.getlist('typ')
     typ = "".join(typ)
@@ -122,10 +129,11 @@ def add_task():
         vorgang=vorgang,
         user=user,
         note=note,
-        comment=0,
-        leader=0,
+        comment=comment,
+        leader="Offen",
         typ=typ,
         kat=kat,
+        change=change,
         creationDate=creationDate,
         AMTNR=AMTNR,
         GGNR=GGNR,
@@ -194,6 +202,8 @@ def categorize_add(id):
             task.note = request.form.get('note')
             task.comment = task.comment + task.note + ";" + current_user.username + ";" + date + ";"
         change_kat = request.form.getlist('change_kat')
+        leader = request.form.getlist('leader')
+        task.leader = "".join(leader)
 
         if "A" in change_kat:
             task.change_kat = False
@@ -269,9 +279,12 @@ def process_add(id):
 
             date = dt.datetime.now()
             date = date.strftime("%d.%m.%y - %H:%M")
+
             if request.form.get('note'):
                 task.note = request.form.get('note')
                 task.comment = task.comment + task.note + ";" + current_user.username + ";" + date + ";"
+            else:
+                task.comment = task.comment + "Eintrag bewertet." + ";" + current_user.username + ";" + date + ";"
 
             task.state = 3
             db.session.commit()  # Bestätigt die Änderung
@@ -306,30 +319,35 @@ def AddPart(id):
     task = Task.query.get(id)
     print(request.form)
 
-    AMTNR_PART = task.AMTNR
+    AMTNR_PART = task.id
     GGNR_PART = request.form.get('GGNR_PART')
     REV_PART = request.form.get('REV_PART')
     note_PART = request.form.get('note_PART')
     valid = request.form.get('valid_PART')
+    parent = request.form.get('parent')
 
     if "0" in valid:
         valid_PART = False
     else:
         valid_PART = True
 
+
     NEW_AMT_PARTS = AMT_PARTS(
         GGNR_PART=GGNR_PART,
         AMTNR_PART=AMTNR_PART,
         REV_PART=REV_PART,
         note_PART=note_PART,
-        valid_PART=valid_PART
+        valid_PART=valid_PART,
+        parent=parent
     )
     # Änderung in die Datenbank übertragen
     db.session.add(NEW_AMT_PARTS)
     # Bestätigt die Änderung
     db.session.commit()
-
-    return redirect(f'/process/{id}')
+    if parent:
+        return redirect(f'/process/{id}#02')
+    else:
+        return redirect(f'/process/{id}#01')
 
 @app.route('/process/part/delete/<int:PARTid>/<int:id>', methods=['POST', 'GET'])
 def DeletePart(PARTid,id):

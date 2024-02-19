@@ -270,6 +270,9 @@
            font-size: 14px;
            color: black;
         }
+
+
+
         #table1 th {
             text-align: left;
             background-color: lightgrey;
@@ -354,7 +357,7 @@
             width: 80%;
         }
 
-        #foldersec td{
+        #foldersec td, tr{
             border: 1px solid black;
             font-size 12px;
         }
@@ -364,6 +367,11 @@
             font-size 12px;
             background-color: lightgrey;
             width: 800px;
+        }
+
+        #foldersec b{
+            padding: 10px;
+            line-height: 200%
         }
 
         .rotate {

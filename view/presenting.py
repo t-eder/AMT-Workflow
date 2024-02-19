@@ -4,6 +4,7 @@ from flask import redirect, flash
 import datetime as dt
 from model import app, db, Task, AMT_PARTS, login_manager, user
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
+import sqlite3
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -51,7 +52,8 @@ def categorize(id):
     desired_id = id
     task = Task.query.filter_by(id=desired_id).first() # Führen Sie eine Abfrage aus, um die Aufgabe mit der gewünschten ID zu finden
     amt_parts = AMT_PARTS.query.all()
-    return render_template('categorize.html', task=task, amt_parts=amt_parts)
+    users = user.query.all()
+    return render_template('categorize.html', task=task, amt_parts=amt_parts, user=users)
 
 @app.route('/calculate/<int:id>')
 def calculate(id):
@@ -82,7 +84,20 @@ def process(id):
     task = Task.query.get(id)
     desired_id = id
     task = Task.query.filter_by(id=desired_id).first() # Führen Sie eine Abfrage aus, um die Aufgabe mit der gewünschten ID zu finden
+
+
     amt_parts = AMT_PARTS.query.all()
+
+    def sort_key(entry):
+        if entry.parent is not None:
+            numeric_part = ''.join(filter(str.isdigit, entry.parent))
+            return (int(numeric_part) if numeric_part else 0, entry.parent)
+        else:
+            return (0, '')
+    amt_parts.sort(key=sort_key)
+
+    print(amt_parts)
+
     return render_template('process.html', task=task, amt_parts=amt_parts)
 
 @app.route('/stockrecord/<int:id>')

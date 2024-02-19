@@ -12,19 +12,17 @@
     <div class="container">
         <h2>Aktive Änderungsmappen:</h2>
 
-            <table id="table1">
+            <table id="table1" >
                    <tr>
                        <th>Anzeigen</th>
+                       <th>Mappe</th>
                        <th>Typ</th>
-                       <th>ÄMT-Nr.</th>
-                       <th>Vorgang</th>
                        <th>Status</th>
                        <th>Greipl-Nr.</th>
                        <th>Bezeichnung</th>
                        <th>Ersteller</th>
                        <th>Projektleitung</th>
-                       <th>Termin</th>
-
+                       <th>Vorgang</th>
                    </tr>
 
                 {% for task in tasks %}
@@ -33,9 +31,8 @@
                         <tr class="task {% if task.completed %}completed{% endif %}">
 
                             <td><center><a href="/index/{{ task.id }}" style="background-color: transparent; padding-top:3px;"><img class="icon" src="{{ url_for('static', filename='list.png') }}" alt="Icon"></a></center></td>
+                            <td>{{ task.id }}</td>
                             <td>{{ task.typ }}</td>
-                            <td>{{ task.AMTNR }}</td>
-                            <td>{{ task.vorgang }}</td>
                             <td>
                                 {% include 'state.html' %}
                             </td>
@@ -43,7 +40,7 @@
                             <td>Bezeichnung aus Infra</td>
                             <td>{{ task.user }}, {{ task.creationDate }} </td>
                             <td> {{ task.leader }} </td>
-                            <td> {{ task.desiredDate }} </td>
+                            <td>{{ task.vorgang }}</td>
                         </tr>
 
                     {% endif %}
